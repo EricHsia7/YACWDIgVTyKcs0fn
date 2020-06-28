@@ -1,0 +1,4298 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>chick</title>
+	<link rel="stylesheet" type="text/css" href="lib/viewui/styles/iview.css">
+    <script src="https://www.jq22.com/jquery/vue.min.js"></script>
+    <script type="text/javascript" src="lib/viewui/iview.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<style> 
+/*!
+ * index.less
+ * v1.1.1 MIT License
+ * https://github.com/Moonlightg
+ * Copyright (c) 2017.12.06 Moonlight, Inc.
+ */
+ #app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+ }
+.egg-wrapper span:before,
+.egg:before,
+.chick-head:before,
+.chick-head:after,
+.chick-body:before,
+.eye span:before,
+.eye span:after,
+.blusher span:before,
+.blusher span:after,
+.foot:before,
+.foot span:before,
+.face:before,
+.face:after,
+.wing-left:before,
+.house-6:before,
+.house-7:before,
+.house-7:after,
+.house-8:before,
+.house-8:after,
+.bee-box:before,
+.soil:before,
+.soil:after,
+.flowerpot:after,
+.flowerpot-top:before,
+.flowerpot-top:after,
+.flower-top:before,
+.flower-head:after,
+.flower-head:before,
+.bee:before,
+.bee:after,
+.bee-body:before,
+.bee-body:after,
+.fence span:nth-child(1):before,
+.fence span:nth-child(1):after,
+.fence span:nth-child(2):before,
+.fence span:nth-child(2):after,
+.fence span:nth-child(3):before,
+.fence span:nth-child(3):after,
+.fence span:nth-child(4):before,
+.fence span:nth-child(4):after,
+.trough:before,
+.trough span:before,
+.trough span:after,
+.fodder:before,
+.fodder:after{
+  position: absolute;
+  content: "";
+}
+.pop-money {
+    top: 0;
+    left: 39%;
+    text-shadow: 0 1px orange, 1px 0 orange, -1px 0 orange, 0 -1px orange;
+    font-size: 15px;
+    opacity: 1;
+    color: yellow;
+    z-index: 9999;
+    text-align: center;
+    position: absolute;
+    transform: translate(-25%, -100%);
+    animation: fadeOut 500ms ease-out;
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: translate(-25%, 0);
+    }
+    100% {
+        transform: translate(-25%, -100%);
+    }
+}
+.pop-Up {
+    top: 0;
+    width: 80%;
+    left: 10%;
+    padding: .5rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: .5rem;
+    font-size: 15px;
+    opacity: 1;
+    color: #fff;
+    z-index: 9999;
+    text-align: center;
+    position: absolute;
+    transform: translate(0, 15%);
+    animation: fadeOutUp 500ms ease-out;
+}
+.pop-title {
+    margin-top: .5rem;
+    margin-bottom: 1rem;
+    font-size: 16px;
+    font-weight: 600;
+    color: #8BC34A;
+}
+.pop-content {
+  margin-bottom: .5rem;
+}
+
+@keyframes fadeOutUp {
+    0% {
+        transform: translate(0, -100%);
+    }
+    100% {
+        transform: translate(0, 15%);
+    }
+}
+/*加载*/
+.loading{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #b7eaff;
+  z-index: 99;
+}
+.loading .pic{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5rem;
+  height: 5rem;
+  margin: -2.5rem 0 0 -2.5rem;
+  
+}
+.loading .pic p{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: .6rem;
+  color: #4d96b5;
+}
+.loading .egg-wrapper{
+  bottom: 20%;
+  left: 0;
+  -webkit-animation:pic 1.5s ease-in infinite;
+}
+.loading .egg{
+  -webkit-animation:none;
+}
+/*容器*/
+.container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: all .6s;
+}
+.content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  background-image:-webkit-linear-gradient(to bottom, #75cefc, #fff); 
+  background-image:linear-gradient(to bottom,#75cefc,#fff);
+  overflow: hidden;
+  transition: all .4s;
+}
+/*太阳光 sunlight*/
+.sunlight{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.sunlight span{ 
+  position: absolute; 
+  top: -10%;
+  height: 150%;
+  width: 3rem;
+  background-color: #fff;
+  left: 20%;
+  transform: rotate(-14deg);
+  z-index: 20;
+}
+.sunlight span:nth-child(1){
+  -webkit-animation:sunlight-1 11s ease-in infinite;
+}
+.sunlight span:nth-child(2){
+  left: 28%;
+  -webkit-animation:sunlight-2 11.5s ease-in infinite;
+}
+.sunlight span:nth-child(3){
+  left: 65%;
+  width: 5rem;
+  transform: rotate(-18deg);
+  -webkit-animation:sunlight-3 13s ease-in infinite;
+}
+.sunlight span:nth-child(4){
+  left: 108%;
+  width: 1.6rem;
+  transform: rotate(-22deg);
+  -webkit-animation:sunlight-3 15s ease-in infinite;
+}
+.land-wrap {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  bottom: 0;
+  left: 0;
+}
+.grass-1{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  background-color: #b7f03b;
+  box-shadow: 0 0 5px #fff;
+}
+.grass-1>span{
+  position: absolute;
+  display: block;
+}
+.grass-1>span:nth-child(1),
+.grass-1>span:nth-child(2){
+  height: 30%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image:-webkit-linear-gradient(225deg, rgba(164, 214, 51, 0.26), #b7f03b); 
+  background-image:linear-gradient(225deg, rgba(164, 214, 51, 0.26), #b7f03b);
+}
+.grass-1>span:nth-child(2){
+  top: 35%;
+}
+.grass-1>span:nth-child(3){
+  height: 30%;
+  width: 100%;
+  bottom: 0;
+  background-image:-webkit-linear-gradient(180deg, #38862c, #b7f03b); 
+  background-image:linear-gradient(180deg, #38862c, #b7f03b);
+
+}
+.grass-1>span:nth-child(4){
+  height: 30%;
+  width: 80%;
+  bottom: 30%;
+  left: 0;
+  border-radius: 0 10rem 10rem 0;
+  background-image:-webkit-linear-gradient(180deg, #5dac34, #b7f03b); 
+  background-image:linear-gradient(180deg, #5dac34, #b7f03b);
+}
+.grass-1>span:nth-child(5),.grass-1>span:nth-child(6){
+  height: 13%;
+}
+.grass-1>span:nth-child(5){
+  width: 95%;
+  right: 0;
+  bottom: 30%;
+  border-radius: 5rem 0 0 5rem;
+  background-image:-webkit-linear-gradient(225deg, #b1e837, #b7f03b); 
+  background-image:linear-gradient(225deg, #b1e837, #b7f03b);
+}
+.grass-1>span:nth-child(6){
+  width: 70%;
+  left: 0;
+  bottom: 18%;
+  border-radius: 0 5rem 5rem 0;
+  background-image:-webkit-linear-gradient(225deg, #b1e837, #b7f03b); 
+  background-image:linear-gradient(225deg, #b1e837, #b7f03b);
+}
+.grass-1>span:nth-child(5):before,.grass-1>span:nth-child(6):before,.grass-1>span:nth-child(6):after{
+  position: absolute;
+  width: 80%;
+  left: 1rem;
+  content: "";
+  height: .8rem;
+  border-radius: 1rem;
+}
+.grass-1>span:nth-child(5):before{
+  bottom: .5rem;
+  background-image:-webkit-linear-gradient(225deg, #bdf641, #b7f03b); 
+  background-image:linear-gradient(225deg, #bdf641, #b7f03b);
+}
+.grass-1>span:nth-child(6):before{
+  top: .25rem;
+  height: 1rem;
+  background-image:-webkit-linear-gradient(225deg, #c2f64e, #b7f03b); 
+  background-image:linear-gradient(225deg, #c2f64e, #b7f03b);
+}
+.grass-1>span:nth-child(6):after{
+  width: 65%;
+  top: .8rem;
+  height: 1rem;
+  background-image:-webkit-linear-gradient(225deg, #c2f64e, #b7f03b); 
+  background-image:linear-gradient(225deg, #c2f64e, #b7f03b);
+}
+/*鸡蛋*/
+.egg-wrapper{
+  position: absolute;
+  bottom: 43%;
+  left: 10%;
+  width: 5rem;
+  height: 5rem;
+  z-index: 6;
+}
+.egg-wrapper span{ position: absolute; }
+.egg-wrapper span:nth-child(1),
+.egg-wrapper span:nth-child(1):before{
+  left: 5%;
+  bottom: 0;
+  width: 90%;
+  height: .6rem;
+  background-color: #9fd444;
+  border-radius: 1rem 1rem 0 0;
+}
+.egg-wrapper span:nth-child(1):before{
+  left: 12.5%;
+  width: 75%;
+  bottom: .5rem;
+}
+.egg-wrapper span:nth-child(2),
+.egg-wrapper span:nth-child(2):before{
+  left: 10%;
+  bottom: 0;
+  width: 80%;
+  height: .6rem;
+  background-color: #77b723;
+  border-radius: 1rem 1rem 0 0;
+}
+.egg-wrapper span:nth-child(2):before{
+  left: 13%;
+  width: 74%;
+  bottom: .5rem;
+}
+.egg-wrapper span:nth-child(3),
+.egg-wrapper span:nth-child(3):before{
+  left: 20%;
+  bottom: 0;
+  width: 60%;
+  height: .8rem;
+  background-color: #bfe85c;
+  border-radius: 1rem 1rem 0 0;
+  z-index: 7
+}
+.egg-wrapper span:nth-child(3):before{
+  bottom: .3rem;
+}
+.egg-wrapper span:nth-child(4),
+.egg-wrapper span:nth-child(4):before{
+  left: 22.5%;
+  bottom: 0;
+  width: 55%;
+  height: .6rem;
+  background-color: #a0d231;
+  border-radius: 1rem 1rem 0 0;
+  z-index: 7
+}
+.egg-wrapper span:nth-child(4):before{
+  bottom: .3rem;
+}
+.egg{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 2.5rem;
+  height: 3rem;
+  margin-left: -1.25rem;
+  background-color: #f2e3cb;
+  border: 2px solid #fff;
+  border-radius: 60% 60% 55% 55% / 80% 80% 40% 40%;
+  z-index: 6;
+  display: block;
+  overflow: hidden;
+  -webkit-animation-name:greenpulse;
+  -webkit-animation-duration: 2s;
+}
+.egg:before{
+  top: -.1rem;
+  left: -.4rem;
+  width: 2.5rem;
+  height: 2.6rem;
+  background-color: #fff;
+  border-radius: 50%;
+}
+.egg-progress-wrap {
+  position: absolute;
+  top: -1rem;
+  left: 1.2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.egg-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.5rem;
+  height: .5rem;
+  border-radius: .2rem;
+  background: white;
+  border: 1px solid #03A9F4;
+  overflow: hidden;
+}
+.egg-progress-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #03A9F4;
+  border: 1px solid #03A9F4;
+  transition: all .3s;
+}
+.egg-progress-wrap>p {
+  color: red;
+  margin-top: 1rem;
+  font-size: .7rem;
+  text-align: center;
+  font-weight: 600;
+}
+.egg-num {
+  position: absolute;
+  top: -.8rem;
+  left: -1px;
+  width: 100%;
+  color: red;
+  text-align: center;
+}
+
+/*鸡鸡*/
+.chick{
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  display: block;
+  width: 7.6rem;
+  height: 8.6rem;
+  margin-left: -3.5rem;
+  z-index: 11;
+/*  transform: scale(.5,.5);*/
+}
+.chick-head{
+  top: -1rem;
+  left: 50%;
+  width: 1.2rem;
+  height: 1.5rem;
+  margin-left: -.75rem;
+  border-radius: 1.5rem;
+  background-color: #ea292c;
+  transform: skew(0deg,-15deg);
+}
+.chick-head:before{
+  bottom: -.1rem;
+  left: 1.3rem;
+  width: .8rem;
+  height: 1rem;
+  margin-left: -.4rem;
+  border-radius: 1rem;
+  background-color: #ea292c;
+  transform: skew(0deg,-15deg);
+}
+.chick-head:after{
+  bottom: -.4rem;
+  left: 1.8rem;
+  width: .4rem;
+  height: .8rem;
+  margin-left: -.2rem;
+  border-radius: .8rem;
+  background-color: #ea292c;
+}
+.chick>div{ position: absolute; }
+.chick-body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 7.6rem;
+  height: 100%;
+  background-color: #f2e3cb;
+  border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;
+  z-index: 5;
+/*  -webkit-animation:chickbody 1.5s ease-in infinite;
+  animation:chickbody 1.5s ease-in infinite;*/
+  overflow: hidden;
+}
+.chick-body:before{
+  position: absolute;
+  top: 0;
+  left: -.05rem;
+  width: 7.6rem;
+  height: 8.2rem;
+  background-image:-webkit-linear-gradient(-180deg, #fff, #fff, #f9e5e6); 
+  background-image: linear-gradient(-180deg, #fff, #fff, #f9e5e6);
+  border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;
+/*  -webkit-animation:chickbody-before 1.5s ease-in infinite;
+  animation:chickbody-before 1.5s ease-in infinite;*/
+
+}
+.eye{
+  top: 1.5rem;
+  left: 1.3rem;
+  width: 5rem;
+  height: 1rem;
+  z-index: 8;
+}
+.eye span{
+  position: absolute;
+  left: 1rem;
+  width: .4rem;
+  height: .9rem;
+  background-color: #27221e;
+  border-radius: 60%;
+}
+.eye span:nth-child(2){
+  left: 3.5rem
+}
+.eye span:before{
+  width: .12rem;
+  height: .12rem;
+  border-radius: .12rem;
+  background-color: #fff;
+  top: .2rem;
+  left: .15rem;
+}
+.eye span:after{
+  left: -.2rem;
+  top: -1rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: #fff;
+  border-radius: 50%;
+  z-index: 6;
+  -webkit-animation:eye 1.4s ease-in infinite;
+}
+.blusher{
+  top: 3rem;
+  left: 1.3rem;
+  width: 5rem;
+  height: 1rem;
+  -webkit-animation:blusher 3s ease-in infinite;
+  z-index: 8;
+}
+.blusher span{
+  position: absolute;
+  left: .4rem;
+  width: .8rem;
+  height: .4rem;
+  background-color: #fe8a78;
+  border-radius: 50%;
+}
+.blusher span:nth-child(2){
+  left: 3.7rem;
+}
+.blusher span:before {
+  top: -.1rem;
+  left: -.2rem;
+  width: 1.2rem;
+  height: .6rem;
+  border-radius: 50%;
+  background-color: rgba(254, 138, 120, 0.5);
+  box-shadow: 0 0 5px #fdccc4;
+}
+.face{
+  top: 3.1rem;
+  left: 1.4rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  z-index: 7;
+  -webkit-animation:face 1.5s ease-in infinite;
+}
+.face:before{
+  top: 50%;
+  left: .3rem;
+  margin-top: -.7rem;
+  width: 1.6rem;
+  height: 1.4rem;
+  border-radius: 80%;
+  background-color: #fcf4f2;
+}
+.face:after{
+  top: 0;
+  left: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.wing-left{
+  left: -.34rem;
+  width: 2rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #fbd6cd;
+  bottom: 2.2rem;
+  z-index: -1;
+  transform: rotate(20deg);
+  overflow: hidden;
+}
+.wing-left:before{
+  left: -.4rem;
+  width: 1rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: rotate(-15deg);
+}
+.wing-right,.wing-content,.wing-dh{
+  top: 3rem;
+  right: 0;
+  width: 5rem;
+  height: 5rem;
+  z-index: 9;
+}
+.wing-right{
+  -webkit-animation:wingright 1.5s ease-in infinite;
+}
+.wing-content{
+  z-index: -1;
+}
+.wing-content span{
+  position: absolute;
+  top: 0;
+  right: -.38rem;
+  width: 2rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-image:-webkit-linear-gradient(-180deg, #fff, #fbd6cd); 
+  background-image: linear-gradient(-180deg, #fff, #fbd6cd);
+  z-index: -1;
+  transform: rotate(-30deg);
+  -webkit-animation:arm 1.5s ease-in infinite;
+}
+.wing-right span{
+  position: absolute;
+}
+.wing-right span:nth-child(1){
+/*  top: 0;
+  right: -.38rem;
+  width: 2rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-image:-webkit-linear-gradient(-180deg, #fff, #fbd6cd); 
+  background-image: linear-gradient(-180deg, #fff, #fbd6cd);
+  z-index: -1;
+  transform: rotate(-30deg);*/
+}
+.wing-right span:nth-child(2){
+    top: 1.4rem;
+    right: -.29rem;
+    width: 1.6rem;
+    height: 1rem;
+    border-radius: 3rem;
+    transform: skew(-7deg,16deg);
+    background-color: #fff6f7;
+    z-index: 10;
+}
+.wing-right span:nth-child(3){
+    top: 1.5rem;
+    right: 1.1rem;
+    width: 1.2rem;
+    height: 1.1rem;
+    border-radius: 3rem;
+    border-left: 3px solid #fff;
+    transform: skew(0deg,27deg);
+    background-color: #fff6f7;
+    z-index: 11;
+}
+.wing-right span:nth-child(4){
+    top: 1.9rem;
+    right: 1.8rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 3rem;
+    border-left: 3px solid #fff;
+    transform: skew(0deg,43deg);
+    background-color: #fff6f7;
+    border-left: 2px solid #fff;
+    z-index: 11;
+}
+.wing-right span:nth-child(5){
+    top: 2rem;
+    right: -.3rem;
+    width: 3rem;
+    height: 1.5rem;
+    background-color: #fff6f7;
+    border-radius: 0 0 1.5rem 1.5rem;
+    z-index: 9;
+}
+.wing-right span:nth-child(6){
+    top: 1rem;
+    right: 0rem;
+    width: 1.9rem;
+    height: 1.1rem;
+    border-radius: 3rem;
+    transform: skew(0deg,35deg);
+    background-color: #fff6f7;
+    z-index: 10;
+}
+.wing-right span:nth-child(7){
+    top: 2rem;
+    right: -.5rem;
+    width: 3.3rem;
+    height: 1.65rem;
+    background-image: -webkit-linear-gradient(-222deg, #fff, #fbd6cd);
+    background-image: linear-gradient(-222deg, #fff, #fbd6cd);
+    border-radius: 0 0 1.65rem 1.65rem;
+    z-index: 8;
+}
+.wing-right span:nth-child(8){
+    top: 1rem;
+    right: 0rem;
+    width: 1.9rem;
+    height: 1.1rem;
+    border-radius: 3rem;
+    border-left: 2px solid #fff;
+    transform: skew(0deg,35deg);
+    background-color: #fff6f7;
+    z-index: 10;
+}
+.wing-box {
+  position: absolute;
+  top: 64%;
+  right: -9%;
+  width: 10px;
+  height: 10px;
+  z-index: 9;
+}
+.wing-r {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+    animation: wingfirst 1.3s infinite;
+}
+.wing-r span {
+  position: absolute;
+}
+.wing-r span:first-child {
+  top: 0px;
+  right: 10px;
+  width: 53px;
+  height: 20px;
+  background: #fde9e4;
+  border-radius: 100% 60% 50% 50%;
+  border-bottom: 3px solid #fbeeee;
+}
+.wing-r span:nth-child(2) {
+top: 10px;
+    right: 46%;
+    width: 36px;
+    height: 13px;
+    background: #fcf3f4;
+    border-radius: 45% 36% 50% 50%;
+    transform: rotate(-30deg);
+    border-left: 3px solid #fefdfd;
+}
+.wing-r span:nth-child(3) {
+    top: 13px;
+    right: 0;
+    width: 30px;
+    height: 14px;
+    background: #fcf3f4;
+    border-radius: 40% 36% 50% 50%;
+    transform: rotate(-58deg);
+    border-left: 3px solid #ffffff;
+}
+@keyframes wingfirst {
+0%   {transform: rotate(35deg);}
+50%  {transform: rotate(45deg);}
+100% {transform: rotate(35deg);}
+}
+.food{
+  position: absolute;
+  top: .7rem;
+  right: 1.3rem;
+  width: 2rem;
+  height: 2.2rem;
+  background-color: #ffcf00;
+  border-radius: 60% 60% 55% 55% / 80% 80% 40% 40%;
+  transform: skew(24deg,-10deg);
+  z-index: 7;
+}
+.food p{
+  position: absolute;
+  left: .2rem;
+  width: .3rem;
+  height: .4rem;
+  background-color: #fff;
+  border-radius: .4rem;
+  -webkit-animation:food-p 1.5s ease-in infinite;
+}
+.food .dot-box {
+  position: absolute;
+  top: -.4rem;
+  left: .4rem;
+  width: .8rem;
+  height: .8rem;
+}
+.food .dot-box span{
+  position: absolute;
+  top: 70%;
+  left: 20%;
+  width: .16rem;
+  height: .16rem;
+  border-radius: 50%;
+  background-color: #ffcf00;
+  -webkit-animation:dot-1 1s ease infinite;
+}
+.food .dot-box span:nth-child(2){
+  position: absolute;
+  top: 60%;
+  left: .4rem;
+  width: .1rem;
+  height: .1rem;
+  border-radius: 50%;
+  background-color: #ffcf00;
+  -webkit-animation:dot-1 1.4s ease infinite;
+}
+.mouth{
+  top: 3.2rem;
+  left: 3.45rem;
+  width: .8rem;
+  height: 1rem;
+  z-index: 8;
+}
+.mouth span{
+  position: absolute;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: .4rem solid transparent;
+  border-right: .4rem solid transparent;
+  border-bottom: .5rem solid #fecd07;
+  -webkit-animation:mouthspan 1.2s ease-in infinite;
+}
+.mouth span:nth-child(2){
+  top: .5rem;
+  border-top: .5rem solid #fecd07;
+  border-bottom: none;
+  -webkit-animation:mouthspan 1.2s ease-in infinite;
+}
+.mouth span:before{
+  position: absolute;
+  content: "";
+  width: .1rem;
+  height: .5rem;
+  background-color: #fecd07;
+  border-radius: 150%;
+  left: 50%;
+  margin-left: -.05rem;
+}
+.mouth span:nth-child(2):before{
+  top: -.5rem;
+}
+.mouth p{
+  position: absolute;
+  top: 50%;
+  left: .1rem;
+  margin-top: -.05rem;
+  width: .6rem;
+  height: 0.1rem;
+  border-radius: 50%;
+  background-color: #cd553c;
+  -webkit-animation:mouthp 1.2s ease-in infinite;
+}
+.foot{
+  bottom: -1rem;
+  width: 7.6rem;
+  height: 1rem;
+}
+.foot:before{
+  bottom: .3rem;
+  left: 1.8rem;
+  width: 4rem;
+  height: .4rem;
+  border-radius: 50%;
+  background-color: #87b934;
+}
+.foot span{
+  position: absolute;
+  top: .4rem;
+  left: 2.3rem;
+  width: .6rem;
+  height: .14rem;
+  border-radius: .1rem;
+  background-color: #585c08;
+}
+.foot span:nth-child(2){
+  left: 4.6rem;
+}
+.foot span:before{
+  top: -.7rem;
+  left: .35rem;
+  width: .16rem;
+  height: .8rem;
+  border-radius: .1rem;
+  background-color: #585c08;
+  transform: rotate(-15deg);
+}
+.foot span:nth-child(2):before{
+  left: .1rem;
+  transform: rotate(15deg);
+}
+/*鸡饭碗*/
+.trough{
+  position: absolute;
+  bottom: 15%;
+  right: 10%;
+  width: 5rem;
+  height: 4rem;
+}
+.trough:before{
+  bottom: -.2rem;
+  width: 5rem;
+  height: .4rem;
+  border-radius: 50%;
+  background-color: #155d2b;
+  z-index: 1
+}
+.trough span{ position: absolute; }
+.trough span:nth-child(1){
+  bottom: 0;
+  width: 5rem;
+  height: 1.5rem;
+  border-top: .15rem solid #663018;
+  border-radius: 0 0 1rem 1rem;
+  background-color: #ac5b2c;
+  z-index: 1;
+}
+.trough span:nth-child(1):before,
+.trough span:nth-child(1):after{
+  top: .45rem;
+  width: 5rem;
+  height: .1rem;
+  background-color: #cc8547;
+}
+.trough span:nth-child(1):after{
+  width: 3rem;
+  top: .95rem;
+  right: .25rem;
+}
+.trough span:nth-child(2){
+  bottom: 1.5rem;
+  left: -.2rem;
+  width: 5.4rem;
+  height: .5rem;
+  background-color: #9c4b38;
+  z-index: 1;
+}
+.trough span:nth-child(2):before,
+.trough span:nth-child(2):after{
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: .25rem;
+  background-color: #fff;
+}
+.trough span:nth-child(2):after{
+  top: .25rem;
+  background-color: #f6b03e;
+}
+.trough .fodder{
+  position: absolute;
+  bottom: .5rem;
+  left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: .25rem;
+  background-color: #f7fb20;
+  transform: rotate(45deg);
+  z-index: 0;
+  overflow: hidden;
+}
+.trough .fodder:before{
+  left: -.9rem;
+  top: .6rem;
+  width: 0;
+  height: 0;
+  border-left: 2.5rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-top: 2.5rem solid #ffcf00;
+  transform: skew(-36deg,24deg);
+}
+.trough .fodder:after{
+  right: -1.5rem;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-top: 1.5rem solid #f99b2a;
+  transform: skew(34deg,0deg);
+}
+.trough .trough-l{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.3rem;
+  height: 1.3rem;
+  border-top: .3rem solid #f7b986;
+  border-radius: 0 0 1rem 1rem;
+  background-color: #e69c47;
+  overflow: hidden;
+  z-index: 2;
+}
+.trough .trough-l p{
+  display: inline-block;
+  width: .1rem;
+  height: 1.3rem;
+  margin-left: .32rem;
+  background-color: #9d5219;
+}
+/*心形*/
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: .8rem;
+  height: .8rem;
+  margin-left: -16%;
+  margin-top: -30%;
+}
+.heart:before,
+.heart:after {
+  position: absolute;
+  content: "";
+  left: .35rem;
+  top: 0;
+  width: .4rem;
+  height: .7rem;
+  background: red;
+  border-radius: .5rem .5rem 0 0;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+.heart:after {
+  left: 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transform-origin: 100% 100%;
+  transform-origin :100% 100%;
+}
+/*三角形*/
+.triangle-box {
+  position: absolute;
+  width: 100%;
+  top: 35.5%;
+  left: 0;
+  height: 5%;
+  display: flex;
+  align-items: flex-end;
+}
+.triangle-box.two{
+  top: 3.2rem;
+  width: 90%;
+  height: 1rem;
+  z-index: 5;
+}
+.triangle-box .item{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: .25rem solid transparent;
+  border-right: .25rem solid transparent;
+  border-bottom: .5rem solid #60ae34;
+  margin: 0 .5rem;
+}
+.triangle-box .item:nth-child(1),
+.triangle-box .item:nth-child(4){ margin-left: 1rem;}
+/*叶子*/
+.leaf-box{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 5rem;
+  height: 5rem;
+  overflow: hidden;
+}
+.leaf-box .leaf-item{
+  content: '';
+  position: absolute;
+}
+.leaf-box .leaf-1{
+  left: -2.5rem;
+  bottom: 2.2rem;
+  width: 4rem;
+  height: 2.5rem;
+  border-top-left-radius: 5rem;
+  background: #236b37;
+  transform: skew(120deg);
+}
+.leaf-box .leaf-2{
+  left: -1.55rem;
+  bottom: .5rem;
+  width: 4.1rem;
+  height: 3rem;
+  border-bottom-right-radius: 5rem;
+  background: #0e4e20;
+  transform: skew(-35deg,-30deg);
+}
+.leaf-box .leaf-3{
+  left: -1.5rem;
+  bottom: -0.8rem;
+  width: 4rem;
+  height: 2.5rem;
+  border-top-left-radius: 5rem;
+  background: #236b37;
+  transform: skew(120deg,-12deg);
+}
+.leaf-box .leaf-4{
+  left: -0.5rem;
+  bottom: -2rem;
+  width: 4.1rem;
+  height: 3rem;
+  border-bottom-right-radius: 5rem;
+  background: #0e4e20;
+  transform: skew(-35deg,-29deg);
+}
+/*山峰*/
+.peak-box{
+  position: absolute;
+  top: 5%;
+  height: 50%;
+  width: 100%;
+}
+.peak-box>div{position: absolute;}
+.peak-1{
+  bottom: 2rem;
+  border-bottom: 5rem solid #9adcf9;
+  border-left: 4rem solid transparent;
+  border-right: 4rem solid transparent;
+  height: 0;
+  width: 12rem;
+  left: -6rem;
+}
+.peak-2{
+  content: "";
+  left: 3rem;
+  bottom: 4.5rem;
+  width: 4rem;
+  height: 1rem;
+  border-top-right-radius: 4rem;
+  background: #9adcf9;
+  transform: skew(38deg,-43deg);
+}
+.peak-3,.peak-4{
+  left: 2.5rem;
+  bottom: 2rem;
+  width: 0;
+  height: 0;
+  border-left: 8rem solid transparent;
+  border-right: 8rem solid transparent;
+  border-bottom: 8rem solid #9adcf9;
+}
+.peak-4{
+  left: 6.8rem;
+  bottom: 3rem;
+  border-bottom: 8rem solid #92dafa;
+}
+.peak-5{
+  content: "";
+  height: 1rem;
+  width: 9rem;
+  left: 17rem;
+  bottom: 4.5rem;
+  background: #92dafa;
+  border-top-left-radius: 4rem;
+  transform: skew(-45deg,45deg);
+}
+.peak-6{
+  width: 100%;
+  height: 3.5rem;
+  bottom: 0;
+  left: 0;
+  background-color: #73dbc5;
+}
+.peak-7{
+  left: 2rem;
+  bottom: 3.5rem;
+  width: 14rem;
+  height: 14rem;
+  overflow: hidden;
+}
+.peak-7:before{
+  position: absolute;
+  content: "";
+  bottom: -6.5rem;
+  left: 2rem;
+  width: 10rem;
+  height: 10rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  background-image:-webkit-linear-gradient(60deg, #76d6f5, #72dcb8); 
+  background-image:linear-gradient(60deg, #76d6f5, #72dcb8);
+}
+.peak-7-1 {
+  position: absolute;
+  left: 0.4rem;
+  bottom: -1.1rem;
+  width: 0;
+  height: 0;
+  border-left: 5.5rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: 5.5rem solid #cfeffd;
+  transform: skew(-22deg,-22deg);
+}
+.peak-7-2 {
+  position: absolute;
+  content: "";
+  left: 4.2rem;
+  bottom: 0rem;
+  width: 2rem;
+  height: .3rem;
+  border-bottom-right-radius: 0.1rem;
+  background: #cfeffd;
+  transform: skew(70deg,-68deg);
+}
+.peak-8{
+  width: 12rem;
+  height: 0;
+  right: 0;
+  bottom: 3.5rem;
+  border-bottom: 1.5rem solid #a0e8dd;
+  border-left: 1.5rem solid transparent;
+  border-right: 0rem solid transparent;
+}
+.peak-8:before{
+  position: absolute;
+  content: "";
+  border-bottom: 1rem solid #a0e8dd;
+  border-left: 1rem solid transparent;
+  border-right: 0rem solid transparent;
+  height: 0;
+  width: 3rem;
+  right: 0;
+  top: -1rem;
+}
+.peak-9{
+  left: 0;
+  bottom: -2.5rem;
+  right:0;
+  height: 4rem;
+  background-image: -webkit-linear-gradient(0deg, #7acaab, #4f8b74);
+  background-image: linear-gradient(0deg, #7acaab, #4f8b74);
+}
+.peak-9:before{
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 4rem;
+  width: 7rem;
+  height: 1rem;
+  border-top-right-radius: 4rem;
+  background: #4f8b74;
+}
+.peak-9:after{
+  position: absolute;
+  content: "";
+  left: 6.9rem;
+  bottom: 3.5rem;
+  width: 5.1rem;
+  height: 1rem;
+  border-bottom-left-radius: 4rem;
+  border-bottom-right-radius: 4rem;
+  background: #73dbc5;
+}
+/*风车塔*/
+.windmill{
+  bottom: 5rem;
+  right: 4.5rem;
+  width: 5rem;
+  height: 8rem;
+  z-index: 4
+}
+.windmill>div{ position: absolute;}
+.windmill-1 {
+  width: 5rem;
+  height: 0;
+  right: 0;
+  bottom: 0;
+  border-bottom: 5rem solid #d1d6d7;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+}
+.windmill-1:before {
+  position: absolute;
+  content: "";
+  width: 2.5rem;
+  height: 0;
+  right: -.5rem;
+  bottom: -5rem;
+  border-bottom: 5rem solid #f4f5f6;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+}
+.windmill-2,.windmill-3{
+  left: 50%;
+  bottom: 2.8rem;
+  width: 1rem;
+  height: 1.2rem;
+  background-color: #d39651;
+  border-radius: 1rem 1rem 0 0;
+  margin-left: -.7rem;
+  box-shadow: 3px 0px 5px #a26f35 inset;
+}
+.windmill-3{
+  bottom: .5rem;
+}
+.windmill-2:before,.windmill-3:before{
+  position: absolute;
+  left: -.1rem;
+  bottom: -.3rem;
+  content: "";
+  width: 1.2rem;
+  height: .3rem;
+  background-color: #b1d9d4;
+}
+.windmill-4 {
+  bottom: 5.5rem;
+  left: 1rem;
+  width: 0;
+  height: 0;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  border-bottom: 2rem solid #e25258;
+}
+.windmill-4:before{
+  position: absolute;
+  content: "";
+  bottom: -2.5rem;
+  left: -1.5rem;
+  width: 3rem;
+  height: .5rem;
+  background-color: #c4c7c7;
+}
+.windmill-4:after{
+  position: absolute;
+  content: "";
+  right: -1rem;
+  width: 0;
+  height: 0;
+  border-left: 0 solid transparent;
+  border-right: .5rem solid transparent;
+  border-bottom: 2rem solid #be2933;
+  transform: skew(26deg,0deg);
+}
+.windmill-5{
+  top: -2rem;
+  width: 5rem;
+  height: 5rem;
+  -webkit-animation:rotate 5s linear infinite;
+  z-index: 2;
+}
+.windmill-5>div{ position: absolute;}
+.windmill-5:before{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  border-radius: .5rem;
+  margin: -.25rem 0 0 -.25rem;
+  background-color: #fff;
+  z-index: 2;
+}
+.windmill-5-1,.windmill-5-2{
+  top: 50%;
+  width: 5rem;
+  height: .2rem;
+  margin-top: -.1rem;
+  background-color: #b5b2b2;
+}
+.windmill-5-2{
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.windmill-5-1:before,.windmill-5-2:before,.windmill-5-1:after,.windmill-5-2:after{
+  position: absolute;
+  content: "";
+  width: 1.8rem;
+  height: .5rem;
+  border-radius: 0 0 .1rem .1rem;
+  background-color: #fff7e0;
+}
+.windmill-5-1:before,.windmill-5-2:before{
+  top: .1rem;
+}
+.windmill-5-1:after,.windmill-5-2:after{
+  bottom: 0.2rem;
+  right: 0;
+  border-radius: .1rem .1rem 0 0;
+}
+/*白云*/
+.clouds{
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.cloud {
+  position: absolute;
+  top: 2rem;
+  width: 5rem;
+  height: 1.5rem;
+  border-radius: 3rem;
+  background-color: #cfeffd;
+}
+.cloud:before {
+  content: '';
+  position: absolute;
+  background: #cfeffd;
+  width: 5rem;
+  height: .8rem;
+  border-radius: .5rem;
+  bottom: 0;
+  
+}
+.cloud.x1{
+  left: -30%;
+  -webkit-animation:cloud 80s linear infinite;
+}
+.cloud.x1:before{
+  left: -1rem;
+}
+.cloud.x2{
+  right: -30%;
+  top: 8rem;
+  width: 4rem;
+  height: 1.6rem;
+  -webkit-animation:cloudx2 150s linear infinite;
+}
+.cloud.x2:before{
+  width: 3rem;
+  height: .6rem;
+  right: 1.8rem;
+}
+.cloud.x3{
+  left: -50%;
+  top: 11rem;
+  width: 3rem;
+  height: 1.4rem;
+  -webkit-animation:cloudx3 120s linear infinite;
+}
+.cloud.x3:before{
+  width: 2rem;
+  height: .4rem;
+  left: 1.8rem;
+}
+/*房子*/
+.house{
+  position: absolute;
+  top: -6.5rem;
+  right: 0;
+  width: 12rem;
+  height: 8rem;
+  overflow: hidden;
+}
+.house>div{ position: absolute;}
+.house-1{
+  bottom: 0;
+  width: 7rem;
+  height: 3.5rem;
+  background-color: #e75c62;
+}
+.house-2{
+  bottom: 3.5rem;
+  left: 0;
+  border-bottom: 2rem solid #e75c62;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 7rem;
+}
+.house-2-1{
+  bottom: 3.5rem;
+  left: -.7rem;
+  border-bottom: 2rem solid #fff;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 8.4rem;
+}
+.house-2-2{
+  bottom: 3.5rem;
+  left: -.3rem;
+  border-bottom: 2rem solid #650e10;
+  border-left: 1.5rem solid transparent;
+  border-right: 1.5rem solid transparent;
+  height: 0;
+  width: 7.676rem;
+}
+.house-3 {
+  bottom: 5.5rem;
+  left: 1.5rem;
+  width: 0;
+  height: 0;
+  border-left: 2rem solid transparent;
+  border-right: 2rem solid transparent;
+  border-bottom: 1.5rem solid #e75c62;
+}
+.house-3-1 {
+  bottom: 5.5rem;
+  left: .76rem;
+  width: 0;
+  height: 0;
+  border-left: 2.8rem solid transparent;
+  border-right: 2.8rem solid transparent;
+  border-bottom: 2.2rem solid #fff;
+}
+.house-3-2 {
+  bottom: 5.5rem;
+  left: 1.2rem;
+  width: 0;
+  height: 0;
+  border-left: 2.35rem solid transparent;
+  border-right: 2.35rem solid transparent;
+  border-bottom: 1.9rem solid #650e10;
+}
+.house-4{
+  top: 0.25rem;
+  right: 0rem;
+  width: 7.3rem;
+  height: 2rem;
+  background-color: #643c3d;
+  transform: skewX(51deg);
+}
+.house-5{
+  top: 2.25rem;
+  right: -2.05rem;
+  width: 7.3rem;
+  height: 2.2rem;
+  background-color: #573435;
+  transform: skewX(36deg);
+}
+.house-6{
+  top: 4rem;
+  right: 0;
+  width: 5rem;
+  height: 0.35rem;
+  background-color: #fff;
+}
+.house-6:before{
+  top: .3rem;
+  width: 5rem;
+  height: 1.2rem;
+  background-color: rgba(101, 14, 16, 0.82);
+  z-index: 2;
+}
+.house-7{
+  width: 5rem;
+  height: 3.6rem;
+  right: 0;
+  bottom: 0;
+  background: #be2933;
+}
+.house-7:before,.house-7:after{
+  width: .8rem;
+  height: 1.4rem;
+  background-color: #482112;
+  left: 1.3rem;
+  top: .5rem;
+  border: .15rem solid #fff;
+}
+.house-7:after{
+  left: 3.5rem;
+}
+.house-8{
+  width: 4rem;
+  height: 3rem;
+  background: #3d5246;
+  bottom: 0;
+  left: 1rem;
+}
+.house-8:before{
+  top: -.5rem;
+  left: 0;
+  width: 5rem;
+  height: .5rem;
+  background-color: #fff;
+  border-radius: .1rem;
+}
+.house-8:after{
+  bottom: 0;
+  left: 0;
+  width: 3.5rem;
+  height: 2.2rem;
+  background-color: #6a876e;
+}
+.house-9{
+  width: 6rem;
+  height: 1rem;
+  background-color: #6db835;
+  border-radius: 2rem 0 0 0;
+  bottom: 0;
+  right: 0;
+}
+/*护栏*/
+.fence{
+  position: absolute;
+  top: -2rem;
+  right: 12rem;
+  width: 5rem;
+  height: 3rem;
+}
+.fence span{ position: absolute; }
+.fence span:nth-child(1),.fence span:nth-child(2){
+  left: 0;
+  width: .5rem;
+  height: 3rem;
+  border-radius: .1rem .1rem 0 0;
+  background-color: #d39651;
+  box-shadow: -2px 0 0 #ab5e2b inset;
+}
+.fence span:nth-child(1):before,.fence span:nth-child(2):before{
+  width: .7rem;
+  height: .2rem;
+  bottom: -.2rem;
+  left: -.1rem;
+  background-color: #d0a989;
+}
+.fence span:nth-child(1):after,
+.fence span:nth-child(2):after{
+  top: 0;
+  left: .15rem;
+  width: 0;
+  height: 0;
+  border-left: .2rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: .5rem solid #ab5e2b;
+  -webkit-transform: rotate(170deg);
+  transform: rotate(170deg);
+}
+.fence span:nth-child(2):after{
+  top: 1.5rem;
+  left: .05rem;
+  -webkit-transform: rotate(-12deg);
+  transform: rotate(-12deg);
+}
+.fence span:nth-child(2){
+  left: 3rem;
+}
+.fence span:nth-child(3),.fence span:nth-child(4){
+  right: 0;
+  bottom: .5rem;
+  height: .5rem;
+  width: 4.95rem;
+  border-radius: .1rem 0 0 .1rem;
+  box-shadow: 0 2px 0 #f6ccaa inset;
+  background-color: #e7aa62;
+}
+.fence span:nth-child(3):before,
+.fence span:nth-child(4):before,
+.fence span:nth-child(3):after,
+.fence span:nth-child(4):after{
+  top: .125rem;
+  left: .1rem;
+  width: .25rem;
+  height: .25rem;
+  border-radius: .25rem;
+  background-color: #ab5e2b;
+}
+.fence span:nth-child(3):after,
+.fence span:nth-child(4):after{
+  left: 3rem;
+}
+.fence span:nth-child(4){
+  bottom: 1.8rem;
+}
+/*蜜蜂鲜花*/
+.bee-box{
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  width: 7rem;
+  height: 4rem;
+  transform: scale(.8,.8)
+}
+.bee-box>div{ position: absolute; }
+.bee-box:before{
+  width: 7rem;
+  height: .6rem;
+  background-color: #60ae34;
+  border-radius: .5rem;
+  bottom: -.3rem;
+}
+.soil,.soil:before{
+  width: 2rem;
+  height: 1rem;
+  border-radius: 3rem 3rem 0 0;
+}
+.soil{
+  bottom: 0;
+  left: .8rem;
+  background-color: #7e422b;
+  z-index: 2
+}
+.soil:before{
+  left: -.8rem;
+  background-color: #ab5e2b
+}
+.soil.two,.soil.two:before{
+  width: 1.8rem;
+  height: 1.2rem;
+  border-radius: 3rem 3rem 0 0;
+}
+.soil:after,.soil.two:after{
+  top: .5rem;
+  left: 0;
+  width: .25rem;
+  height: .25rem;
+  border-radius: .25rem;
+  background-color: #7e422b;
+  z-index: 2
+}
+.soil.two{
+  bottom: 0;
+  left: 3rem;
+}
+.soil.two:before{
+  left: -.5rem;
+  background-color: #ab5e2b;
+}
+.flowerpot{
+  width: 3.25rem;
+  height: 3.25rem;
+  right: 0;
+  bottom: 0;
+}
+.flowerpot:after{
+  right: 0rem;
+  bottom: -.25rem;
+  left: 0;
+  height: .25rem;
+  border-radius: .25rem;
+  background-color: #60ae34;
+  z-index: 4;
+}
+.flowerpot>div{
+  position: absolute;
+}
+.flowerpot-top{
+  right: 0;
+  bottom: .6rem;
+  width: 3.5rem;
+  height: 0;
+  border-bottom-left-radius: .25rem;
+  border-bottom: 1.6rem solid #ffd729;
+  border-left: .5rem solid transparent;
+  border-right: .5rem solid transparent;
+  -webkit-transform: rotate(107deg);
+  transform: rotate(107deg);
+  z-index: 3;
+}
+.flowerpot-top:before{
+  width: .25rem;
+  height: 3rem;
+  left: 1.1rem;
+  top: -.6rem;
+  border-radius: .25rem;
+  background-color: #ef9f29;
+  -webkit-transform: rotate(91deg);
+  transform: rotate(91deg);
+}
+.flowerpot-top:after{
+  width: .35rem;
+  height: 2.5rem;
+  left: 1.14rem;
+  bottom: -1.2rem;
+  border-radius: .1rem;
+  background-color: #fff;
+  -webkit-transform: rotate(91deg);
+  transform: rotate(91deg);
+}
+.flowerpot-bottom{
+  right: -.7rem;
+  bottom: .298rem;
+  width: 2.5rem;
+  height: 0;
+  border-top-left-radius: 1.3rem;
+  border-bottom: 1.6rem solid #ffd729;
+  border-left: .5rem solid transparent;
+  border-right: .2rem solid transparent;
+  -webkit-transform: rotate(107deg);
+  transform: rotate(107deg);
+}
+/*小花*/
+.flower{
+  width: 2rem;
+  height: 4rem;
+  top: 0;
+  left: 1.5rem;
+  -webkit-animation:rock 3s ease-in infinite;
+}
+.flower>div{ position: absolute; }
+.flower-top{
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  z-index: 2;
+}
+.flower-top:before{
+  width: .5rem;
+  height: .5rem;
+  background-color: #fae134;
+  border-radius: .5rem;
+  top: 50%;
+  left: 50%;
+  margin: -.25rem 0 0 -.25rem;
+  z-index: 2
+}
+.flower-top p{
+  position: absolute;
+  top: 50%;
+  margin-top: -.15rem;
+  width: 2rem;
+  height: .3rem;
+  background-color: #fff;
+  border-radius: .4rem;
+}
+.flower-top p:nth-child(2){
+  transform: rotate(45deg);
+  transform-origin:50% 50%;/*定义动画的旋转中心点*/
+}
+.flower-top p:nth-child(3){
+  transform: rotate(90deg);
+  transform-origin:50% 50%;/*定义动画的旋转中心点*/
+}
+.flower-top p:nth-child(4){
+  transform: rotate(135deg);
+  transform-origin:50% 50%;/*定义动画的旋转中心点*/
+}
+.flower-head {
+  bottom: 0;
+  left: .5rem;
+  width: 1rem;
+  height: 3rem;
+  border: 3px solid #60ae34;
+  border-radius: 100% 0 0 100%/50%;
+  border-right: none;
+}
+.flower-head:after{
+  bottom: 1rem;
+  left: -.55rem;
+  width: 0;
+  height: 0;
+  border-left: .25rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: .7rem solid #64b033;
+  transform: skewX(45deg);
+}
+.flower-head:before{
+  bottom: 1.3rem;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: .3rem solid transparent;
+  border-right: 0rem solid transparent;
+  border-bottom: .4rem solid #64b033;
+  transform: skewX(-45deg);
+}
+/*蜜蜂*/
+.bee{
+  width: 1.5rem;
+  height: .8rem;
+  will-change: transform;
+  -webkit-animation:bee1 6s ease-in infinite;
+  z-index: 5;
+}
+.bee-2{
+  right: 0;
+  will-change: transform;
+  -webkit-animation:bee2 5s ease-in infinite;
+}
+.bee>div{ position: absolute; }
+.bee:before,.bee:after{
+  top: 50%;
+  right: .45rem;
+  width: .1rem;
+  height: .1rem;
+  border-radius: .1rem;
+  background-color: #feca21;
+  margin-top: -.05rem;
+}
+.bee:before{
+  right: .7rem;
+  z-index: 5;
+}
+.bee-body,.bee-body:before,.bee-body:after{
+  left: 0;
+  width: .6rem;
+  height: .6rem;
+  border-radius: .6rem;
+  background-color: #442418;
+}
+.bee-body:before{
+  left: .2rem;
+  background-color: #feca21;
+}
+.bee-body:after{
+  left: .5rem;
+  background-color: #442418;
+}
+/*动画*/
+.infinite{-webkit-animation-iteration-count: infinite;}
+@-webkit-keyframes greenpulse {
+  from { -webkit-box-shadow: 0 0 18px #f1ff93; }
+  50% { -webkit-box-shadow: 0 0 36px rgba(205,229,41,.5); }
+  to { -webkit-box-shadow: 0 0 18px #f1ff93; }
+}
+@-webkit-keyframes cloud {
+  0% { left:-30%; }
+  50% { left:120%; }
+  100% { left:-30%; }
+}
+@-webkit-keyframes cloudx2 {
+  0% { right:-30%; }
+  50% { right:130%; }
+  100% { right:-30%; }
+}
+@-webkit-keyframes cloudx3 {
+  0% { left:-50%; }
+  50% { left:150%; }
+  100% { left:-50%; }
+}
+@-webkit-keyframes rotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@-webkit-keyframes rock {
+  0% { transform: rotate(-5deg) translate3d(0, 0, 0);}
+  50% { transform: rotate(5deg) translate3d(30%, 0, 0);}
+  100% { transform: rotate(-5deg) translate3d(0, 0, 0);}
+}
+@-webkit-keyframes bee1 {
+  0% { transform: rotateY(0deg) translate3d(0, 0, 0);}
+  25% { transform: rotateY(0deg) translate3d(50%, 100%, 0);}
+  49.9% { transform: rotateY(0deg) translate3d(100%, 0, 0);}
+  50% { transform: rotateY(180deg) translate3d(-100%, 0, 0);}
+  75% { transform: rotateY(180deg) translate3d(-50%, -100%, 0);}
+  99.9% { transform: rotateY(180deg) translate3d(0, 0, 0);}
+  100% { transform: rotateY(0deg) translate3d(0, 0, 0);}
+}
+@-webkit-keyframes bee2 {
+  0% { transform: rotateY(180deg) translate3d(0, 0, 0);}
+  25% { transform: rotateY(180deg) translate3d(50%, 80%, 0);}
+  49.9% { transform: rotateY(180deg) translate3d(80%, 0, 0);}
+  50% { transform: rotateY(0deg) translate3d(-80%, 0, 0);}
+  75% { transform: rotateY(0deg) translate3d(-50%, -80%, 0);}
+  99.9% { transform: rotateY(0deg) translate3d(0, 0, 0);}
+  100% { transform: rotateY(180deg) translate3d(0, 0, 0);}
+}
+@-webkit-keyframes eye {
+  0% { transform: translate3d(0, 0, 0);}
+  40% { transform: translate3d(0, 0, 0);}
+  50% { transform: translate3d(0, 60%, 0);}
+  60% { transform: translate3d(0, 0, 0);}
+  100% { transform: translate3d(0, 0, 0);}
+}
+@-webkit-keyframes blusher {
+  0% { transform: scale(1);}
+  25% { transform: scale(.9);}
+  50% { transform: scale(1);}
+  75% { transform: scale(.9);}
+  100% { transform: scale(1);}
+}
+@-webkit-keyframes mouth {
+  0% { transform: rotate(45deg) scale(1,1);}
+  50% { transform: rotate(45deg) scale(1.2,1.2);}
+  100% { transform: rotate(45deg) scale(1,1);}
+}
+@-webkit-keyframes mouthspan {
+  0% { 
+    left: 0;
+    border-left: .4rem solid transparent;
+    border-right: .4rem solid transparent;
+  }
+  50% { 
+    left: .1rem;
+    border-left: .3rem solid transparent;
+    border-right: .3rem solid transparent;
+  }
+  100% { 
+    left: 0;
+    border-left: .4rem solid transparent;
+    border-right: .4rem solid transparent;
+  }
+}
+@-webkit-keyframes mouthp {
+  0% { 
+    left: 0;
+    width: .7rem;
+    height: 0.1rem;
+  }
+  50% { 
+    left: .1rem;
+    width: .55rem;
+    height: 0.14rem;
+    margin-top: -.07rem;
+  }
+  100% { 
+    left: 0;
+    width: .7rem;
+    height: 0.1rem;
+  }
+}
+@-webkit-keyframes wingright{
+  0% { transform: rotate(0deg) translate3d(0, 0, 0);}
+  25% { transform: rotate(-2deg) translate3d(1.5%, 1%, 0);}
+  50% { transform: rotate(0deg) translate3d(0, 0, 0);}
+  75% { transform: rotate(-2deg) translate3d(1.5%, 1%, 0);}
+  100% { transform: rotate(0deg) transform: translate3d(0, 0, 0);}
+}
+@-webkit-keyframes arm{
+  0% { transform: translate3d(5%, 10%, 0);}
+  25% { transform: translate3d(10%, 12%, 0);}
+  50% { transform: translate3d(5%, 10%, 0);}
+  75% { transform: translate3d(10%, 12%, 0);}
+  100% { transform: translate3d(5%, 10%, 0);}
+}
+@-webkit-keyframes chickbody{
+  0% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@-moz-keyframes chickbody{
+  0% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@keyframes chickbody{
+  0% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.7rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.6rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@-webkit-keyframes chickbody-before{
+  0% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@-moz-keyframes chickbody-before{
+  0% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@keyframes chickbody-before{
+  0% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  25% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  50% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+  75% { height: 8.3rem; border-radius: 66% 66% 66% 66% / 75% 75% 50% 50%;}
+  100% { height: 8.2rem; border-radius: 66% 66% 66% 66% / 80% 80% 50% 50%;}
+}
+@-webkit-keyframes food-p{
+  0% { opacity: 1;}
+  25% {opacity: 0;}
+  50% { opacity: 1;}
+  75% {opacity: 0;}
+  100% { opacity: 1;}
+}
+@-webkit-keyframes dot-1{
+  0% { transform: translate3d(50%, -70%, 0);}
+  25% { transform: translate3d(50%, -170%, 0);}
+  50% { transform: translate3d(100%, -270%, 0);}
+  75% { transform: translate3d(100%, -370%, 0);}
+  100% { transform: translate3d(100%, -470%, 0);}
+}
+@-webkit-keyframes face{
+  0% { transform: scale(1,1) translate3d(5%, 10%, 0);}
+  25% { transform: scale(1.1,1.1) translate3d(10%, 12%, 0);}
+  50% { transform: scale(1,1) translate3d(5%, 10%, 0);}
+  75% { transform: scale(1.1,1.1) translate3d(10%, 12%, 0);}
+  100% { transform: scale(1,1) translate3d(5%, 10%, 0);}
+}
+@-webkit-keyframes sunlight-1{
+  0% { opacity: 0;}
+  50% { opacity: .15;}
+  100% { opacity: 0;}
+}
+@-webkit-keyframes sunlight-2{
+  0% { opacity: 0;}
+  50% { opacity: .1;}
+  100% { opacity: 0;}
+}
+@-webkit-keyframes sunlight-3{
+  0% { opacity: 0;}
+  50% { opacity: .08;}
+  100% { opacity: 0;}
+}
+@-webkit-keyframes pic{
+  0% { transform: scale(.8,.8)}
+  25% {transform: scale(1,1)}
+  50% { transform: scale(.8,.8)}
+  75% {transform: scale(1,1)}
+  100% { transform: scale(.8,.8)}
+}
+/* 没有进食状态 */
+.noeat .face,
+.noeat .food,
+.noeat .wing-right {
+  display: none;
+}
+.noeat .blusher,
+.noeat .mouth span,
+.noeat .mouth span:nth-child(2),
+.noeat .mouth p {
+  animation: none;
+}
+
+/* 功能菜单 */
+.nav-list {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 21;
+}
+.nav-list {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 21;
+}
+
+
+
+
+.nav{
+
+}
+.nav-list li {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  border-radius: 50%;
+  background: #ffb300;
+  border: 2px solid #8c3530;
+}
+.nav-list li.n-green {
+  background: #8BC34A;
+  border: 2px solid #639629;
+}
+.nav-list li.n-green .nav-icon {
+  color: #f4ff85;
+  text-shadow: none;
+}
+.nav-list li.n-green .nav-name{
+  background: #64962a;
+}
+.nav-icon {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  font-size: 32px;
+  text-align: center;
+  color: #8c3530;
+  text-shadow: 0px 0px 10px #fff;
+}
+.nav-name {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 42px;
+  padding: 3px 0;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  background: #8c352f;
+  transform: translateX(-50%);
+}
+/* 底部边框1像素 */
+.border-bottom-1px {
+  position: relative;
+}
+.border-bottom-1px::after {
+  content: ' ';
+  width: 100%;
+  height: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-bottom: 1px #e7e7e7 solid;
+  transform-origin: left bottom;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .border-bottom-1px::after {
+    -webkit-transform: scaleY(.7);
+    transform: scaleY(.7);
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+  .border-bottom-1px::after {
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3), only screen and (min-device-pixel-ratio: 3) {
+  .border-bottom-1px ::after {
+    -webkit-transform: scaleY(.33);
+    transform: scaleY(.33);
+  }
+}
+
+/* 换装场景 */
+.popup-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 199;
+}
+.beingskin .sunlight span {
+  z-index: 10;
+}
+.beingskin .content {
+  bottom: 50%;
+}
+.page-popup {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 60%;
+  padding-top: 60px;
+  overflow: hidden;
+  transition: all .4s;
+  z-index: 200;
+}
+.beingskin .page-popup {
+  top: 40%;
+}
+.popup-item {
+  height: 100%;
+}
+.popup-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  width: 100%;
+  padding: 0 20px;
+  background: #fff;
+  border-radius: 30px 30px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+}
+.popup-head i {
+  font-size: 26px;
+  color: #999;
+}
+.popup-content {
+  height: 100%;
+  background: #fff;
+}
+
+/* --------- 装扮 --------- */
+/* ---- 帽子 ---- */
+.skin-hat {
+  top: -1.8rem;
+  left: 52%;
+  width: 5rem;
+  height: 3rem;
+  margin-left: -2.5rem;
+  z-index: 10;
+}
+/* --- 青蛙帽子 --- */
+.hat-frog {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 80%;
+  width: 100%;
+  background-image: linear-gradient(122deg, #38862c, #7aa24c);
+  border-radius: 47% / 100% 100% 0 0;
+  transform: rotate(5deg);
+}
+.hat-frog:after{
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  content: "";
+  width: 110%;
+  height: .4rem;
+  border-radius: .5rem;
+  background: #a6c94b;
+}
+.hat-frog:before {
+  position: absolute;
+  top: 27%;
+  left: 46%;
+  content: "";
+  width: .8rem;
+  height: .7rem;
+  border-radius: 50% / 100% 100% 0 0;
+  border-left: .2rem solid #39552f;
+  border-top: .14rem solid #39552f;
+  border-right: .2rem solid #39552f;
+  transform: rotate(186deg);
+}
+.hat-frog-eye {
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: #56923b;
+}
+.hat-frog-eye:before{
+    position: absolute;
+    top: 12%;
+    left: 15%;
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    border: 2.5px solid #37521b;
+}
+.hat-frog-eye:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  width: 10px;
+  height: 3px;
+  margin-left: -5px;
+  margin-top: -1.5px;
+  background: #000;
+  border-radius: 5px;
+}
+.el {
+  top: -30%;
+  left: 12%;
+}
+.er {
+  top: -13%;
+  right: -1%;
+}
+.hat-frog-eye.er:after{
+  transform: rotate(38deg);
+}
+/*---- 青蛙上衣 ---*/
+.jacket-frog {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 7.6rem;
+  height: 3.4rem;
+  background: #7aa24c;
+  border-top: 5px solid #a6c94b;
+  border-bottom: 15px solid #a6c94b;
+}
+.jacket-frog:before{
+  position: absolute;
+  top: -22%;
+  left: 48%;
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  background: #ffcb7e;
+  border-radius: 50%;
+  z-index: 2;
+}
+.jacket-frog span:first-child{
+  position: absolute;
+  top: -44%;
+  left: 0;
+  width: 60%;
+  height: 1.4rem;
+  background: #7ba24c;
+  border-top: 5px solid #a6c94b;
+  border-right: 5px solid #a6c94b;
+  border-radius: 0 .4rem .4rem 0;
+}
+.jacket-frog span:nth-child(2){
+  position: absolute;
+  top: 7%;
+  right: 0;
+  width: 52%;
+  height: 2.3rem;
+  border-top: 5px solid #a6c94b;
+  border-left: 5px solid #a6c94b;
+  border-radius: .4rem 0 0 0;
+}
+.jacket-frog span:nth-child(3),
+.jacket-frog span:nth-child(4){
+  position: absolute;
+  bottom: -8%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #a6c94b;
+  border-radius: 50%;
+}
+.jacket-frog span:nth-child(3){
+  left: 15%;
+}
+.jacket-frog span:nth-child(4){
+  right: 15%;
+}
+.jacket-frog span:nth-child(3):before,
+.jacket-frog span:nth-child(4):before {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  content: "";
+  width: 60%;
+  height: 60%;
+  background: #7ba24c;
+  border-radius: 50%;
+}
+
+.sun-cured {
+  position: absolute;
+  top: 63%;
+  width: 100%;
+  height: 13px;
+  margin-top: -15px;
+}
+.sun-cured:after,
+.sun-cured:before{
+  position: absolute;
+  content: "";
+  width: 11px;
+  height: 9px;
+  background: #d9c39a;
+  border-radius: 50% / 50%;
+}
+.sun-cured:before {
+  top: 0;
+  left: 11px;
+}
+.sun-cured:after {
+  top: 8px;
+  right: 5px;
+  transform: rotate(27deg);
+  width: 10px;
+}
+
+/* 换装选择列表 */ 
+.opt-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.opt-list li {
+  position: relative;
+  width: 23%;
+  height: 5rem;
+  margin: 1%;
+  border: 1px solid #e7e7e7;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.opt-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-radius: 5px;
+  background: rgba(0,0,0,.7);
+  z-index: 2;
+  line-height: 5rem;
+  display: none;
+}
+.opt-mask i {
+  color: #b1e837;
+  font-size: 1.6rem;
+}
+.opt-list li.active .opt-mask {
+  display: block;
+}
+
+/* view ui 重置 */
+.ivu-tabs {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ivu-tabs-bar {
+  flex: 0 0 49px;
+  margin-bottom: 0;
+}
+.ivu-tabs-no-animation>.ivu-tabs-content {
+  flex: 1;
+  overflow: auto;
+  padding: 10px;
+}
+.ivu-tabs-nav .ivu-tabs-tab {
+  padding: 10px;
+  margin-right: 10px;
+}
+.ivu-tabs-nav .ivu-tabs-tab .ivu-icon {
+  width: auto;
+  height: auto;
+  margin-right: 0px;
+  font-size: 28px;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+.ivu-tabs-ink-bar {
+  display: none;
+}
+.ivu-tabs-nav .ivu-tabs-tab {
+  position: relative;
+  padding: 0 10px;
+  margin-right: 0;
+  display: flex;
+  align-items: center;
+}
+.ivu-tabs-nav {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.ivu-tabs-nav .ivu-tabs-tab-active:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 3px;
+  background: #57a3f3;
+}
+.el-dialog__wrapper:has(div.load-box){
+  color: #F90;
+}
+
+/* user 用户*/
+.user-box {
+  position: fixed;
+  top: .5rem;
+  left: .5rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  padding: .25rem .75rem .25rem .25rem;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 3rem;
+  padding-left: 50px;
+}
+.user-logo {
+  margin-right: .25rem;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffbb38;
+  background: #8c3530;
+  border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+}
+.user-logo .portrait-item {
+  border: none; 
+  box-shadow: none;
+  width: 40px;
+  height: 40px;
+}
+.user-level {
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  color: #fff;
+  background: #8c352f;
+  font-size: .65rem;
+  padding: 0 6px;
+  border-radius: 5px;
+  border: 1px solid #fbddb1;
+  transform: translateX(-50%);
+}
+.user-money {
+    display: flex;
+    color: #ffb304;
+    font-size: .7rem;
+    padding-top: .2rem;
+}
+.user-name {
+  font-size: .75rem;
+  font-weight: 600;
+  color: #8c3530;
+}
+.user-mi {
+  line-height: 1;
+  color: #F90;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -1px;
+}
+.user-form {
+  width: 80%;
+  margin: 0 auto;
+}
+.user-form button {
+  display: block;
+  margin: 0 auto;
+}
+.user-form .user-name {
+  text-align: center;
+  font-size: 1rem;
+}
+.user-form .user-name i {
+  color: #926625;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-left: 7px;
+}
+.user-form 
+.user-zl {
+  width: 80%;
+  margin: 15px auto 0;
+}
+.uz-i {
+  padding: 5px;
+  display: inline-block;
+  color: #865d20;
+}
+.pl-title {
+  margin: 1rem 0 .5rem;
+  color: #F44336;
+}
+/* 颜色 */
+.c-red {
+  color: #F44336;
+} 
+.c-green {
+  color: #8bca43;
+}
+.c-orange {
+  color: #FF9800;
+}
+.c-blue {
+  color: #40aaff;
+}
+/* 头像 */
+.head-portrait {
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.portrait-item {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #f7e1cb;
+  box-shadow: 0 0 3px #7d4f3e;
+  background: url(../images/portrait0.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+.portrait-item.sm {
+  width: 60px;
+  height: 60px;
+}
+.portrait-item.lg {
+  width: 100px;
+  height: 100px;
+}
+.portrait0 {
+  background: url(../images/portrait0.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+.portrait1 {
+  background: url(../images/portrait1.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+.portrait2 {
+  background: url(../images/portrait2.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+
+/* 倒计时组件 */
+.countdown-box {
+  position: absolute;
+  top: -5rem;
+  width: 100%;
+  text-align: center;
+  z-index: 99;
+}
+.countdown-text {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  background: #F90;
+  border-radius: 15px;
+  color: #fff;
+}
+.countdown-text:before {
+  position: absolute;
+  bottom: -9px;
+  left: 16px;
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 10px solid #ff9901;
+  border-left: 10px solid transparent;
+  display: none;
+}
+.countdown-text.active {
+  margin-top: 15px;
+}
+.countdown-text.active:before {
+  display: block;
+}
+.progress {
+    width: 100%;
+    height: 4px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: #d1b8ff;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 5px #d1d2d1;
+}
+.progress .progress-content {
+    width: 0%;
+    height: 100%;
+    background-color: #673AB7;
+}
+
+/* 背包列表。*/
+.food-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: .25rem;
+}
+.food-list li {
+  width: 25%;
+  padding: .25rem;
+}
+.food-item {
+  position: relative;
+  padding: .5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+.food-img {
+  text-align: center;
+}
+.food-img img {
+  width: 100%;
+}
+.food-img.egg-img {
+  width: 70%;
+  margin: 0 auto .5rem;
+}
+.modal-box .food-img {
+    width: 6rem;
+    margin: 0 auto;
+}
+.food-t {
+  padding: 0 1rem;
+  width: 14rem;
+  margin: 0 auto;
+}
+.food-t-btn {
+  margin-top: 1rem;
+  text-align: center;
+}
+.food-t-btn button {
+  width: 100%;
+}
+.food-name {
+  text-align: left;
+  margin-bottom: .5rem;
+  font-size: .7rem;
+  font-weight: 600;
+}
+.food-num {
+  position: absolute;
+  bottom: 1rem;
+  right: .5rem;
+  font-size: .7rem;
+}
+.food-icon {
+  margin-right: .5rem;
+}
+.shortage-tips {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  flex-direction: column;
+}
+.isMask .mask-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5); 
+  border-radius: 5px;
+}
+
+/* 购物 */
+.shopping-box {
+  text-align: center;
+}
+.num-form {
+  width: 8rem;
+  display: flex;
+  margin: .5rem auto;
+}
+.shop-btn {
+  flex: 0 0 2rem;
+  text-align: center;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shop-input {
+  margin: 0 .4rem;
+}
+.shop-input input {
+  text-align: center;
+}
+/*modal*/
+.c-modal__title {
+  font-size: 18px;
+  text-align: center;
+  color: #805c4e;
+  font-weight: 600;
+}
+.c-modal__label{
+  display: inline-block;
+  background: #ffe3c8;
+  border: 2px solid #e88d35;
+  padding: 8px 20px;
+  border-radius: 30px;
+  color: #ff9800;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  font-size: 15px;
+  line-height: 1;
+  transform: translateX(-50%);
+  font-weight: 600;
+}
+
+/*iview*/
+.hide-footer .ivu-modal-footer {
+  display: none;
+}
+.ivu-modal {
+  border-radius: 10px;
+  background: #673f30;
+  padding: 2px;
+}
+.ivu-modal-content {
+  border: 5px solid #845d4f;
+  background-color: #ead0b7;
+  border-radius: 10px;
+}
+.ivu-modal-close {
+  right: -15px;
+  top: -15px;
+  overflow: hidden;
+  cursor: pointer;
+  background: #e88d35;
+  border-radius: 50%;
+  border: 3px solid #795548;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ivu-modal-close .ivu-icon-ios-close {
+  font-size: 24px;
+  color: #edd6aa;
+  transition: color .2s ease;
+  position: relative;
+  top: 1px;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+.ivu-modal-footer {
+  border-top: 1px solid #ceaf92;
+  padding: 12px 18px;
+  text-align: right;
+  background: #e8dedb;
+}
+.ivu-btn-primary {
+  color: #fff;
+  background-color: #805c4f;
+  border-color: #6b4c41;
+}
+.ivu-btn-primary:hover {
+  color: #fff;
+  background-color: #634236;
+  border-color: #4a3129;
+}
+@media (max-width: 576px){
+  .ivu-modal {
+      width: auto!important;
+      margin: 15px;
+  }
+}
+.fr {
+  float: right;
+}
+.a-list {
+  height: 58vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.a-list::-webkit-scrollbar {display: none;}
+.a-list li {
+    display: flex;
+    padding: .5rem;
+    border: 2px solid #9a9590;
+    border-radius: .5rem;
+    background: #dad9d8;
+}
+.a-list li + li {
+  margin-top: .5rem;
+}
+.a-info {
+  flex: 1;
+  color: #666;
+}
+.a-right {
+  flex: 0 0 auto;
+  padding-left: .5rem;
+}
+.a-list li.active {
+    border: 2px solid #835d4f;
+    background: #ecc096;
+}
+.a-list li.active .a-info {
+  color: #8e6150;
+}
+.a-list li.onin{
+    background: #989898;
+    border: 2px solid #827d79;
+}
+.a-list li.onin .a-info {
+  color: #6d6d6d;
+}
+.a-list li.onin .ivu-btn-primary,
+.a-list li.onin .ivu-btn-primary:hover {
+    color: #fff;
+    background-color: #6d6d6d;
+    border-color: #696969;
+}
+.reward {
+    float: right;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+    height: 20px;
+    padding: 0 .1rem;
+    background: #f1cf6a;
+    border: 1px solid #e2bb47;
+    color: #d28003;
+    border-radius: 4px;
+}
+.no-data {
+  padding-top: 50px;
+  text-align: center;
+}
+
+/*subject*/
+.subject-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.subject-list li {
+  position: relative;
+  flex: 0 0 25%;
+  padding: 5px;
+}
+.subject-img {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.subject-img:after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+}
+.subject-img img{
+  display: block;
+  width: 100%;
+  border: 1px solid #b9aead;
+  box-shadow: 0 2px 0px #d2d2d2;
+}
+.subject-img img{
+  display: block;
+  width: 100%;
+  border: 1px solid #b9aead;
+  box-shadow: 0 2px 0px #d2d2d2;
+}
+.subject-name {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+.learning-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 5px 10px;
+  border-radius: 30px;
+  background: #969696;
+  color: #fff;
+  width: 56px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 12px;
+  z-index: 9;
+}
+.over .learning-label {
+  background: #03A9F4;
+}
+.subject-list li.on .subject-img:after{
+  display: none;
+}
+.subject-list li.on .learning-label {
+  top: 5px;
+  left: 5px;
+  transform: translate(0, 0);
+  border-radius: 3px;
+  font-size: 12px;
+  padding: 2px;
+  width: 45px;
+  background: #4CAF50;
+}
+.onSubject .container {
+    transform: translate(-100%, 0);
+}
+.subject-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    transform: translate(100%, 0);
+    transition: all .6s;
+    background: #ffcd81;
+}
+.onSubject .subject-wrap {
+    transform: translate(0, 0);
+}
+.subject-head {
+  padding: 0 15px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+.subject-head i {
+  font-size: 20px;
+}
+</style>
+
+</head>
+<body>
+	<div id="app" :class="{onSubject: isSubject}">
+		<div class="container" :class="{ beingskin: skinBox}">
+			<div class="user-box" @click="showUser">
+				<div class="user-logo">
+					<div class="user-level">{{chick.level}}</div>
+					<span class="portrait-item portrait0"></span>
+				</div>
+				<div class="user-info">
+					<div class="user-name">{{user.name}}</div>
+					<div class="user-money">
+						<div class="user-mi"><Icon type="logo-usd" /></div>
+						<p>{{user.money}}</p>
+					</div>
+				</div>
+			</div>
+			<!-- 功能菜單 -->
+			<ul class="nav-list">
+				<li @click="showPopup(skin)"><span class="nav-icon"><i class="ivu-icon ivu-icon-ios-shirt"></i></span><span class="nav-name">換裝</span></li>
+				<li @click="showPopup(shop)"><span class="nav-icon"><i class="ivu-icon ivu-icon-ios-basket"></i></span><span class="nav-name">商店</span></li>
+				<li @click="showPopup(bag)"><span class="nav-icon"><i class="ivu-icon ivu-icon-ios-filing"></i></span><span class="nav-name">背包</span></li>
+				<li @click="showAchievement()"><span class="nav-icon"><i class="ivu-icon ivu-icon-ios-filing"></i></span><span class="nav-name">勳章</span></li>
+				
+			</ul>
+			<div class="content">
+				<!-- 太陽光 -->
+				<c-sunlight></c-sunlight>
+				<!-- 山峰 -->
+				<c-peak></c-peak>
+				<!-- 白雲 -->
+				<c-clouds></c-clouds>
+				<div class="land-wrap">
+					<!-- 草地 -->
+					<c-grass></c-grass>
+					<!-- 房子 -->
+					<c-house></c-house>
+					<!-- 護欄 -->
+					<c-fence></c-fence>
+					<!-- 蜜蜂鲜花 -->
+					<c-bee></c-bee>
+					<!-- 雞蛋 -->
+					<c-egg :eggnum="chick.egg.num" :eggprogress="chick.egg.progress"  ref="paper"></c-egg>
+				</div>
+
+				<!-- 葉子 -->
+				<c-leaf></c-leaf>
+				<!-- 雞飯碗 -->
+				<c-trough></c-trough>
+				<!-- chick -->
+				<div class="chick" :class="{noeat:!chick.eat}">
+					<!-- 進食倒計 -->
+					<div class="countdown-box">
+						<p class="countdown-text" :class="{active : !chick.eat }">{{content}}{{setTime}}</p>
+						<!-- 進食進度條 -->
+						<div class="progress" v-if="value != 0 && value < 100">
+							<div class="progress-content" :style="'width:' + value + '%' "></div>
+						</div>
+					</div>
+					<!-- 裝扮-帽子 -->
+					<div class="skin-hat">
+						<keep-alive>
+							<component
+								:is="chick.componentHat"></component>
+						</keep-alive>
+					</div>
+					<div class="chick-head"></div>
+					<div class="chick-body">
+						<!-- 裝扮-衣服 -->
+						<keep-alive>
+							<component
+								:is="chick.componentClothes"></component>
+						</keep-alive>
+						<!-- 青蛙衣服 -->
+						
+					</div>
+					<div class="eye">
+						<span></span>
+						<span></span>
+					</div>
+					<div class="blusher">
+						<span></span>
+						<span></span>
+					</div>
+					<div class="face"></div>
+					<div class="wing-left"></div>
+					<div class="wing-content">
+						<span></span>
+					</div>
+					<div class="arm" style="display: none;">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<div class="wing-r" style="display: none;"></div>
+					<div class="wing-right">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<div class="food">
+							<p></p>
+							<div class="dot-box">
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+					</div>
+					<div class="mouth">
+						<span></span>
+						<span></span>
+						<p></p>
+					</div>
+					<div class="foot">
+						<span></span>
+						<span></span>
+					</div>
+				</div>
+				<!-- 彈窗遮罩層 -->
+				<div class="popup-mask" v-show="skinBox" @click="hidePopup"></div>
+			</div>
+			<!-- 功能弹窗面板 -->
+			<div class="page-popup">
+				<div class="popup-item" v-show="isSkin">
+					<div class="popup-head border-bottom-1px">
+						<span class="popup-title fl">換裝</span>
+						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
+					</div>
+					<div class="popup-content">
+						<!-- 換裝內容 -->
+						<tabs :animated="false">
+					        <tab-pane label="" icon="ios-egg">
+					        	<ul class="opt-list">
+					        		<li 
+					        		v-for="suit in suits"
+					        		:key="suit.name"
+					        		:class="['opt-btn', { active: chick.currentSuit === suit.id && chick.currentHat === suit.id && chick.currentClothes === suit.id}]"
+					        		@click="replaceDress(0,suit.id)">
+						        		<span class="opt-mask fadeIn animated"><Icon type="md-checkmark-circle" /></span>
+						        		{{ suit.name }}
+					        		</li>
+					        	</ul>
+					        </tab-pane>
+					        <tab-pane label="" icon="ios-school">
+					        	<ul class="opt-list">
+					        		<li 
+					        		v-for="hat in hats"
+					        		:key="hat.name"
+					        		:class="['opt-btn', { active: chick.currentHat === hat.id}]"
+					        		@click="replaceDress(1,hat.id)">
+						        		<span class="opt-mask fadeIn animated"><Icon type="md-checkmark-circle" /></span>
+						        		{{ hat.name }}
+					        		</li>
+					        	</ul>
+					        </tab-pane>
+					        <tab-pane label="" icon="ios-shirt">
+					        	<ul class="opt-list">
+					        		<li
+					        		v-for="clothe in clothes"
+					        		:key="clothe.name"
+					        		:class="['opt-btn', { active: chick.currentClothes === clothe.id}]"
+					        		@click="replaceDress(2,clothe.id)">
+						        		<span class="opt-mask fadeIn animated"><Icon type="md-checkmark-circle" /></span>
+						        		{{ clothe.name }}
+					        		</li>
+					        	</ul>
+					        </tab-pane>
+					        <tab-pane label="" icon="md-rose"><p style="padding-top: 40px; text-align: center;">首飾飾品開發中...</p></tab-pane>
+					        <tab-pane label="" icon="md-glasses"><p style="padding-top: 40px; text-align: center;">眼睛飾品開發中...</p></tab-pane>
+					    </tabs>
+					</div>
+				</div>
+				<div class="popup-item" v-show="isShop">
+					<div class="popup-head border-bottom-1px">
+						<span class="popup-title fl">商店</span>
+						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
+					</div>
+					<div class="popup-content">
+						<p style="padding-top: 50px; text-align: center;">商店功能開發中...</p>
+					</div>
+				</div>
+				<div class="popup-item" v-show="isBag">
+					<div class="popup-head border-bottom-1px">
+						<span class="popup-title fl">背包</span>
+						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
+					</div>
+					<div class="popup-content">
+						<tabs :animated="false">
+					        <tab-pane label="粮食" icon="md-ice-cream">
+					        	<div class="food-box">
+									<ul class="food-list">
+										<li v-for="(food, index) in foods" @click="showFood(index)" :class="{ isMask: food.num == 0 || food.unlock == 0}">
+											<div class="food-item">
+												<div class="food-img">
+													<img :src="food.url">
+												</div>
+												<p class="food-name">{{food.name}}</p>
+												<span class="food-num" v-if="food.num !== 0">{{food.num}}</span>
+												<div class="mask-bg shortage-tips" @click.stop="showShop(food.name)" v-if="food.num == 0 && food.unlock == 1">
+													<i-button :size="buttonSize" type="success">購買</i-button>
+												</div>
+												<div class="mask-bg shortage-tips" v-if="food.unlock == 0" @click.stop="showUnlock(food.name)">
+													<i-button :size="buttonSize" type="warning">解鎖</i-button>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+					        </tab-pane>
+					        <tab-pane label="物品" icon="ios-archive">
+					        	<div class="food-box">
+									<ul class="food-list">
+										<li v-for="(good, index) in goods" v-if="good.num != 0" @click="showGood(good.name)">
+											<div class="food-item">
+												<div class="food-img egg-img">
+													<img :src="good.img">
+												</div>
+												<p class="food-name">{{good.name}}</p>
+												<span class="food-num">{{good.num}}</span>
+											</div>
+										</li>
+									</ul>
+									<div class="no-data" v-show="goods.length == 0">暂无物品</div>
+								</div>
+					        </tab-pane>
+					    </tabs>
+					</div>
+				</div>
+				<div class="popup-item" v-show="isStudy">
+					<div class="popup-head border-bottom-1px">
+						<span class="popup-title fl">學習</span>
+						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
+					</div>
+
+					<div class="popup-content">
+						<tabs :animated="false">
+					        <tab-pane v-for="(subject, index1) in subjectList" :label="subject.type" :icon="subject.icon" :key="subject.type">
+					        	<ul class="subject-list">
+									<li v-for="item in subject.list" :key="item.name" :class="{on:item.learning == 1, over:item.learning == 2}" @click="onSubject(item,index1)">
+										<div class="subject-img">
+											<div class="learning-label">
+												<span v-if="item.learning == 0">未學習</span>
+												<span v-if="item.learning == 1">學習中</span>
+												<span v-if="item.learning == 2">已學完</span>
+											</div>
+											<img :src="item.img">
+										</div>
+										<p class="subject-name">{{item.name}}</p>
+									</li>
+								</ul>
+					        </tab-pane>
+					    </tabs>
+						<p style="padding-top: 50px; text-align: center; display: none;">学习功能开发中...</p>
+					</div>
+				</div>
+			</div>		
+		</div>
+		<transition name="fade">
+		    <div class="loading" v-if="isLoad">
+				<div class="pic">
+					<div class="egg-wrapper">
+						<div class="egg infinite">
+						</div>
+					</div>
+					<p>我是一隻雞</p>
+				</div>
+			</div>
+		</transition>
+
+		<!-- 用户信息 -->
+		<Modal v-model="modalUser" 
+			class-name="hide-footer"
+			@on-ok="keepUser">
+			<div class="user-form" v-if="!editUserName">
+				<div class="head-portrait">
+					<span class="portrait-item portrait0"></span>
+				</div>
+				<div class="user-name">
+					{{user.name}}<Icon type="ios-create" @click="editUser"/>
+				</div>
+				<div class="user-zl">
+					<Row>
+				        <i-col span="12">
+				        	<div class="uz-i"><Icon type="ios-podium" class="c-green" /></div>
+				        	<div class="uz-i">等級：{{chick.level}}</div>
+				        </i-col>
+				        <i-col span="12">
+				        	<div class="uz-i"><Icon type="ios-heart" class="c-red"/></div>
+				        	<div class="uz-i">粉絲：0</div>
+				        </i-col>
+				    </Row>
+				    <Row>
+				        <i-col span="12">
+				        	<div class="uz-i"><Icon type="md-pricetags" class="c-blue"/></div>
+				        	<div class="uz-i">積分：0</div>
+				        </i-col>
+				        <i-col span="12">
+				        	<div class="uz-i"><Icon type="ios-medal" class="c-orange"/></div>
+				        	<div class="uz-i">段位：0</div>
+				        </i-col>
+				    </Row>
+			    </div>
+				<!-- <i-form :model="user" :label-width="80">
+			        <form-item label="用戶名稱">
+			            <i-input v-model="user.name" placeholder="设置用户名称..."></i-input>
+			        </form-item>
+			    </i-form>
+		        <div><p>等級：{{chick.level}}級，經驗：{{chick.exp}}，升級所需：{{chick.upgradeExp}}</p></div> -->
+	        </div>
+	        <div class="user-form" v-if="editUserName">
+	        	<i-form :model="user">
+	        		<p class="pl-title">修改用戶名需要1000金幣</p>
+			        <form-item>
+			            <i-input v-model="newUserName" placeholder="設置用戶名稱..."></i-input>
+			        </form-item>
+			        <i-button type="primary" @click="saveUser">保存</i-button>
+			    </i-form>
+	        </div>
+	    </Modal>
+
+	    <!-- 升級彈窗 -->
+		<Modal :value="modalLevel" @on-ok="levelUser">
+			<p class="c-modal__label">升級了</p>
+          	<p class="c-modal__title" style="font-size: 20px;">恭喜您升到&nbsp;{{chick.level}}&nbsp;級了！</p>
+	    </Modal>
+
+	    <!-- 直接購買商品 -->
+		<Modal :value="modalShop" 
+			@on-ok="shopSettle"
+			@on-cancel="hideShop">
+			<div class="shopping-box">
+				<p>{{currFood.name}}</p>
+				<p>單價：${{currFood.price}}/个</p>
+				<div class="num-form">
+					<div class="shop-btn" @click="shopReduce"><Icon type="md-remove-circle" /></div>
+					<div class="shop-input"><i-input type="text" v-model="shoppingNum" placeholder="數量"></i-input></div>
+					<div class="shop-btn" @click="shopAdd"><Icon type="md-add-circle" /></div>
+				</div>
+				<p>總價：${{currFood.price * shoppingNum}}</p>
+			</div>
+	    </Modal>
+
+	    <!-- 查看食物詳情 -->
+		<Modal :value="modalFood"
+			class-name="hide-footer"
+			@on-cancel="hideFood">
+			<div class="modal-box">
+				<div class="food-img">
+					<img :src="currFood.url">
+				</div>
+				<div class="food-t">
+					<p>物品名稱：{{currFood.name}}</p>
+					<p>擁有數量：{{currFood.num}}</p>
+					<p>進食時長：{{currFood.eatTime | SecondToDate}}</p>
+					<p>獲得經驗：{{currFood.exp}}</p> 
+					<div class="food-t-btn">
+						<i-button type="primary" @click="feedClick">餵食</i-button>
+					</div>
+				</div>
+			</div>
+	    </Modal>
+
+	    <!-- 查看出售物品詳情 -->
+		<Modal :value="modalGood"
+			class-name="hide-footer"
+			@on-cancel="hideGood">
+			<div class="modal-box" v-if="!goodDetails">
+				<div class="food-img">
+					<img :src="currGood.img">
+				</div>
+				<div class="food-t">
+					<p>物品名稱：{{currGood.name}}</p>
+					<p>擁有數量：{{currGood.num}}</p>
+					<p>出售價值：{{currGood.price}}</p>
+					<div class="food-t-btn">
+						<i-button type="primary" @click="setSell">出售</i-button>
+					</div>
+				</div>
+			</div>
+			<div class="shopping-box" v-if="goodDetails">
+				<p>{{currGood.name}}</p>
+				<div class="num-form">
+					<div class="shop-btn" @click="sellReduce"><span>-</span></div>
+					<div class="shop-input"><i-input type="text" v-model="sellNum" placeholder="數量"></i-input></div>
+					<div class="shop-btn" @click="sellAdd"><Icon type="md-add-circle" /></div>
+				</div>
+				<p>出售總價：${{currGood.price * sellNum}}</p>
+				<i-button type="primary" @click="commitSell">出售</i-button>
+			</div>
+	    </Modal>
+
+	    <!-- 勳章列表 -->
+		<Modal v-model="modalAchievement" class-name="hide-footer" @on-cancel="hideAchievement">
+			<p style="margin-bottom: 10px;">成就數量：<span>{{targetList}}</span>/{{achievement.length}}</p>
+			<ul class="a-list">
+				<li v-for="(item, index) in achievement" :class="{ active: item.complete, onin: item.completeID == 1 }">
+					<div class="a-info">
+						<p>{{item.title}}<span class="fr">{{item.completeCurrCount}}/{{item.completeNeedCount}}</span></p>
+						<div>{{item.desc}}
+							<div class="reward" v-if="item.completeID == 0">
+								<div class="reward-icon"><Icon type="logo-usd" /></div>
+								<span class="reward-profit">{{item.profit}}</span>
+							</div>
+						</div>
+					</div>
+					<div class="a-right" v-if="item.complete && item.completeID == 0" @click="receiveAwards(item.title)">
+						<i-button type="primary">領取獎勵</i-button>
+					</div>
+					<div class="a-right" v-if="item.completeID == 1">
+						<i-button type="primary">已完成</i-button>
+					</div>
+				</li>
+			</ul>
+	    </Modal>
+
+	    <!-- 解鎖商品確認 -->
+		<Modal :value="modalUnlock" 
+			@on-ok="commitUnlock"
+			@on-cancel="hideUnlock">
+			<div class="shopping-box">
+				<p>確定解鎖嗎？</p>
+				<p>解鎖需要：${{currFood.unlockPrice}}</p>
+			</div>
+	    </Modal>
+
+	    <!-- 做題組件 -->
+	    <c-subject @outsubject="hideSubject" :showsubject="isSubject"></c-subject>
+	</div>
+	<script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script src="lib/vuex/vuex.min.js"></script>
+	<script>
+
+// 組件
+// 默認衣服
+Vue.component('clothes-default', {
+	template: '<div></div>'
+});
+// 默認帽子
+Vue.component('hat-default', {
+	template: '<div></div>'
+});
+// 青蛙衣服
+Vue.component(‘clothes-forg’, {
+	template: '
+		<div class=“jacket-frog”>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	'
+});
+// 青蛙帽子
+Vue.component('hat-forg', {
+	template: '
+		<div class="hat-frog">
+			<span class="hat-frog-eye el"></span>
+			<span class="hat-frog-eye er"></span>
+			<span class="sun-cured"></span>
+		</div>
+	'
+});
+
+// 太陽光
+Vue.component('c-sunlight', {
+	template: '
+		<div class="sunlight" title="太陽光">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	'
+});
+
+// 山峰-風車
+Vue.component('c-peak', {
+	template: '
+		<div class="peak-box" title="山峰風車">
+			<div class="peak-1"></div>
+			<div class="peak-2"></div>
+			<div class="peak-3"></div>
+			<div class="peak-4"></div>
+			<div class="peak-5"></div>
+			<div class="peak-6"></div>
+			<div class="peak-7">
+				<div class="peak-7-1"></div>
+				<div class="peak-7-2"></div>
+			</div>
+			<div class="peak-8"></div>
+			<div class="peak-9"></div>
+			<div class="windmill">
+				<div class="windmill-1"></div>
+				<div class="windmill-2"></div>
+				<div class="windmill-3"></div>
+				<div class="windmill-4"></div>
+				<div class="windmill-5">
+					<div class="windmill-5-1"></div>
+					<div class="windmill-5-2"></div>
+				</div>
+			</div>
+		</div>
+	'
+});
+
+// 白云
+Vue.component('c-clouds', {
+	template: '
+		<div class="clouds" title="白雲">
+		  	<div class="cloud x1"></div>
+		  	<div class="cloud x2"></div>
+		  	<div class="cloud x3"></div>
+		</div> 
+	'
+});
+
+// 鸡饭碗
+Vue.component('c-trough', {
+	props: ['troughTitle'],
+	template: '
+		<div class="trough" title="雞飯碗">
+			<span></span>
+			<span></span>
+			<div class="fodder"></div>
+			<div class="trough-l">
+				<p></p>
+				<p></p>
+				<p></p>
+			</div>
+		</div>
+	'
+});
+
+// 叶子
+Vue.component('c-leaf', {
+	template: '
+		<div class="leaf-box" title="葉子">
+			<div class="leaf-item leaf-1"></div>
+			<div class="leaf-item leaf-2"></div>
+			<div class="leaf-item leaf-3"></div>
+			<div class="leaf-item leaf-4"></div>
+		</div>
+	'
+});
+
+// 蜜蜂鲜花
+Vue.component('c-bee', {
+	template: '
+		<div class="bee-box" title="蜜蜂鮮花">
+			<div class="soil two"></div>
+			<div class="soil"></div>
+			<div class="flowerpot">
+				<div class="flowerpot-top"></div>
+				<div class="flowerpot-bottom"></div>
+			</div>
+			<div class="flower">
+				<div class="flower-top">
+					<p></p>
+					<p></p>
+					<p></p>
+					<p></p>
+				</div>
+				<div class="flower-head"></div>
+			</div>
+			<div class="bee">
+				<div class="bee-body"></div>
+			</div>
+			<div class="bee bee-2">
+				<div class="bee-body"></div>
+			</div>
+			<div class="triangle-box two">
+				<div class="item"></div>
+				<div class="item"></div>
+				<div class="item"></div>
+			</div>
+		</div>
+	'
+});
+
+// 鸡蛋
+Vue.component('c-egg', {
+	props: ['eggprogress','eggnum'],
+	methods: {
+		// 弹出收成
+	    popAdd (addEggExps) {
+	    	let self = this;
+	      	let popDom = document.createElement('div');// 创建dom
+	      	popDom.classList.add('pop-money');// 给dom添加class
+	      	popDom.innerHTML = "+"+addEggExps;
+	      	self.$refs.eggexp.appendChild(popDom);// 在ref="eggexp"元素内添加dom
+	      	setTimeout(() => {
+	        	popDom.remove()
+	      	}, 500)
+	    },
+	    harvestEgg() {
+	    	let self = this;
+	    	let eggNum = self.$store.state.chick.egg.num;
+	    	let eggPrice = self.$store.state.chick.egg.price;
+	    	console.log("可收穫的雞蛋："+self.$store.state.chick.egg.num);
+	    	if (eggNum > 0) {
+	    		var obj = {
+	    			name: '精美雞蛋',
+	    			num: eggNum,
+	    			price: eggPrice,
+	    			img: 'images/egg.png',
+	    		}
+	    		self.$store.dispatch('harvestegg',obj);
+	    		self.popAdd(eggNum+"雞蛋");
+	    	}
+	    }
+	},
+	template: '
+		<div class="egg-wrapper" title="雞蛋" ref="eggexp">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<div class="egg infinite" @click="harvestEgg">
+				<div class="heart">
+					<div class="egg-num" v-if="eggnum != 0">{{eggnum}}</div>	
+				</div>
+			</div>
+			<div class="egg-progress-wrap">	
+				<p>{{eggprogress}}%</p>
+				<div class="egg-progress">
+					<div class="egg-progress-item" :style="'width:' + eggprogress + '%' "></div>
+				</div>
+			</div>
+		</div>
+	'
+});
+
+// 草地
+Vue.component('c-grass', {
+	template: '
+		<div class="grass-1" title="草">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+			<div class="triangle-box">
+				<div class="item"></div> 
+				<div class="item"></div> 
+				<div class="item"></div> 
+				<div class="item"></div>
+			</div>
+		</div>
+	'
+});
+
+// 房子
+Vue.component('c-house', {
+	template: '
+		<div class="house" title="房子">
+			<div class="house-1"></div>
+			<div class="house-2-1"></div>
+			<div class="house-2-2"></div>
+			<div class="house-2"></div>
+			<div class="house-3-1"></div>
+			<div class="house-3-2"></div>
+			<div class="house-3"></div>
+			<div class="house-4"></div>
+			<div class="house-5"></div>
+			<div class="house-6"></div>
+			<div class="house-7"></div>
+			<div class="house-8"></div>
+			<div class="house-9"></div>
+		</div>
+	'
+});
+
+// 护栏
+Vue.component('c-fence', {
+	template: '
+		<div class="fence" title="護欄">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	'
+});
+
+// 做题组件
+Vue.component('c-subject', {
+	props: ['showsubject'],
+	data: function () {
+	    return {
+	      	count: {}
+	    }
+	},
+	mounted () {
+      this.count = this.$store.state.currSubject
+    },
+	methods: {
+		hideSubject() {
+			this.$emit('outsubject',false)
+		}
+	},
+	template: '
+		<div class="subject-wrap">
+			<div class="subject-head" @click="hideSubject"><i class="ivu-icon ivu-icon-ios-arrow-back"></i>返回</div>
+			<p style="text-align: center;">開發中...</p>
+			<ul>
+				<li>
+					{{count.id}}
+				</li>
+				<li>
+					{{count.name}}
+				</li>
+				<li>
+					{{count.img}}
+				</li>
+			</ul>
+		</div>
+	'
+});
+
+
+</script>
+
+
+
+
+<script src="component.js"></script>
+	<script src="js/store/stateFoods.js"></script>
+	<script src="js/store/stateAchievement.js"></script>
+	<script src="js/store/subject.js"></script>
+	<script src="js/store/index.js"></script>
+	<script>
+		new Vue({
+	        el: '#app',
+	        data: {
+	        	troughTitle: '雞碗',
+	        	effects: 2,
+	        	isLoad: true,
+	        	editUserName: false,
+	        	modalUser: false,
+	            skinBox: false,
+	            modalAchievement: false,
+	            modalShop: false,
+	            modalUnlock: false,
+	            modalFood: false,
+	            modalGood: false,
+	            goodDetails: false,
+	            isSubject: false,
+	            sellNum: 1, // 物品出售默認值
+	            skin: 'skin',
+	            shop: 'shop',
+	            bag: 'bag',
+	            study: 'study',
+	            isSkin: false,
+	            isShop: false,
+	            isBag: false,
+	            isStudy: false,
+	            buttonSize: 'small',
+	            newUserName:'',
+	            formUser: { // 用戶信息填寫表單
+	            	name: '用戶'
+	            },
+	            clothes: [ // 衣服列表
+	            	{
+	            		id: 'default',
+	            		name: '默認上衣'
+	            	},
+	            	{
+	            		id: 'forg',
+	            		name: '青蛙上衣'
+	            	}
+	            ], 
+	            hats: [ // 帽子列表
+	            	{
+	            		id: 'default',
+	            		name: '默認帽子'
+	            	},
+	            	{
+	            		id: 'forg',
+	            		name: '青蛙帽子'
+	            	}
+	            ],
+	            suits: [ // 套裝列表
+	            	{
+	            		id: 'default',
+	            		name: '默認套裝'
+	            	},
+	            	{
+	            		id: 'forg',
+	            		name: '青蛙套裝'
+	            	}
+	            ],
+	            shoppingNum: 0 // 購物數量
+	        },
+	        store, // 把 store 對象提供給 「store」 選項，這可以把 store 的實例注入所有的子組件
+	        computed: {
+	        	// 計算已完成成就的數量
+	        	targetList() {
+	        		let target = this.$store.state.achievement.filter(obj => obj.complete);
+	        		console.log("target:"+target);
+	        		return target.length;
+	        	},
+	        	user() {
+	        		return this.$store.state.user;
+	        	},
+	        	chick() {
+	        		return this.$store.state.chick;
+	        	},
+	        	foods() {
+	        		return this.$store.state.foods;
+	        	},
+	        	goods() {
+	        		return this.$store.state.goods;
+	        	},
+	        	subjectList() {
+	        		return this.$store.state.subjectList
+	        	},
+	        	eat() {
+	        		return this.$store.state.eat;
+	        	},
+	        	setTime() {
+	        		return this.$store.state.setTime;
+	        	},
+	        	startDate() {
+	        		return this.$store.state.startDate;
+	        	},
+	        	endDate() {
+	        		return this.$store.state.endDate;
+	        	},
+	        	content() {
+	        		return this.$store.state.content;
+	        	},
+	        	currFood() {
+	        		return this.$store.state.currFood;
+	        	},
+	        	currGood() {
+	        		return this.$store.state.currGood;
+	        	},
+	        	achievement() {
+	        		return this.$store.state.achievement;
+	        	},
+	        	modalLevel() {
+	        		return this.$store.state.modalLevel;
+	        	},
+	        	value() {
+	        		return this.$store.state.value;
+	        	}
+	        },
+	        mounted () {
+	          this.init() // 初始化
+	        },
+	        methods: {
+				// 初始化
+				init () {
+					this.$nextTick(function () {
+						var self = this;
+						//var time = new date();
+					  	// 頁面加載讀取緩存
+					  	self.$store.dispatch('loadgame');
+					  	// 判斷是否是新的一天
+					  	//self.isNewDay(time);
+					  	// 判斷是否在進食
+					  	self.chickIsEat();
+					});
+					this.hideLoading();
+				},
+				isNewDay: function(time) {
+
+				},
+				// 判斷是否正在進食
+		        chickIsEat: function() {
+		            // 頁面加載獲取當前時間
+		            let loadDate = new Date().getTime();
+		            // 判斷上一次是否進食結束
+		            let isEat = this.$store.state.endDate - loadDate;
+		            if (isEat > 0) {
+		                this.$store.state.chick.eat = true;
+		                this.countdown(loadDate);
+		            } else {
+		            	this.$store.commit('CHICK_IS_EAT');
+		                return;
+		            }
+		        },
+		        hideFood: function() {
+		        	this.modalFood = !this.modalFood;
+		        },
+		        showFood: function(index) {
+		        	this.modalFood = !this.modalFood;
+		        	this.$store.state.currFood = this.$store.state.foods[index];
+		        },
+				// 點擊食物進行餵食
+				feedClick: function () {
+					// 判斷是否在進食
+					if (this.$store.state.chick.eat) {
+						this.error("我還在吃著呢");
+						return
+					} else if (this.$store.state.currFood.num > 0) {
+		              	let startDate = new Date().getTime();
+            			let endDate = startDate + this.$store.state.currFood.eatTime;
+		              	this.$store.commit('FEED_CLICK',endDate);
+		              	this.countdown(startDate);
+		            } else {
+		            	this.error("你没有"+this.state.currFood.name+"食物了");
+		            }
+		            this.hideFood();
+					this.hidePopup();
+					this.success('餵食成功');
+				},
+				// 餵食倒計時方法
+		        countdown (startdate) {
+		            let self = this;
+		            let es = self.$store.state.endDate - startdate;
+		            let delay = 100/self.$store.state.currFood.eatTime*1000; // 計算每秒走的進度
+		            console.log("計算每秒走的進度:"+delay+"%");
+		            if (es > 0) {
+		              	let timer = setInterval (function() {
+			                let nowTime = new Date().getTime();
+			                let t = self.$store.state.endDate - nowTime;
+			                let value = (self.$store.state.currFood.eatTime - t)/1000 * delay; // 計算進度條
+			                console.log("計算進度條:"+value+"%");
+			                if (value <= 100) {
+			                  	self.$store.state.value = value
+			                } else {
+			                  	self.$store.state.value = 100;
+			                }
+			                console.log("t:"+t+"進度條："+value+"%");
+		                	if (t > 0) {
+			                  	self.$store.state.chick.eat = true;
+			                  	let day = Math.floor(t/86400000);
+			                  	let hour=Math.floor((t/3600000)%24);
+			                  	let min=Math.floor((t/60000)%60);
+			                  	let sec=Math.floor((t/1000)%60);
+			                  	hour = hour < 10 ? "0" + hour : hour;
+			                  	min = min < 10 ? "0" + min : min;
+			                  	sec = sec < 10 ? "0" + sec : sec;
+			                  	let format = '';
+			                  	if (day > 0) {
+			                    	format = `${day}天${hour}小時${min}分${sec}秒`;
+			                  	} 
+			                  	if (day <= 0 && hour > 0 ) {
+			                    	format = `${hour}小時${min}分${sec}秒`; 
+			                  	}
+			                  	if (day <= 0 && hour <= 0) {
+			                    	format =`${min}分${sec}秒`;
+			                  	}
+			                  	self.$store.state.content = format; // 顯示倒計時
+			                  	self.$store.dispatch('savegame');
+		                	} else {
+		                  		clearInterval(timer); // 清除定時器
+		                  		// 餵食結束
+		                  		self.$store.dispatch('endeat');
+		                  		// 彈出雞蛋加成
+		                  		self.$refs.paper.popAdd(self.$store.state.chick.egg.addEggExps+'%');
+		                	}
+		              	},1000)
+		            }
+		        },
+				showShop: function (name) {
+					this.$store.commit('shopFood',name);
+					this.modalShop = true;
+				},
+				hideShop: function() {
+					this.modalShop = false;
+				},
+				shopReduce: function() {
+					this.shoppingNum--;
+				},
+				shopAdd: function() {
+					this.shoppingNum++;
+				},
+				showGood: function(name) {
+					this.$store.dispatch('shopGood',name);
+					this.modalGood = true;
+				},
+				hideGood: function() {
+					this.modalGood = false;
+				},
+				setSell: function() {
+					this.goodDetails = !this.goodDetails;
+				},
+				sellAdd: function() {
+					if (this.sellNum == this.$store.state.currGood.num) {
+						this.error('不能再加了');
+						return;
+					} else {
+						this.sellNum++;
+					}
+				},
+				sellReduce: function() {
+					if (this.sellNum == 1) {
+						this.error('不能再减了');
+						return;
+					} else {
+						this.sellNum--;
+					}
+				},
+				commitSell: function() {
+					this.goodDetails = !this.goodDetails;
+					//var price = this.$store.state.currGood.price*this.selNum;
+					this.success('出售了'+this.$store.state.currGood.num+'个'+this.$store.state.currGood.name);
+					this.$store.dispatch('sellgood',this.sellNum);
+					this.modalGood = false;
+				},
+				showUnlock: function(name) {
+					this.$store.commit('shopFood',name);
+					this.modalUnlock = true;
+				},
+				hideUnlock: function() {
+					this.modalUnlock = false;
+				},
+				commitUnlock: function() {
+					var food = this.$store.state.currFood.name;
+					var unlockPrice = this.$store.state.currFood.unlockPrice;
+					console.log("解鎖需要金幣："+unlockPrice);
+					if (this.$store.state.user.money < unlockPrice) {
+						this.error('不夠金幣解鎖');
+						this.modalUnlock = false;
+						return false;
+					} else {
+						this.$store.dispatch('unlockfood',unlockPrice);
+						this.success('成功解鎖了'+food);
+					}
+					this.hideUnlock();
+				},
+				showAchievement: function() {
+					this.modalAchievement = true;
+				},
+				hideAchievement: function() {
+					this.modalAchievement = false;
+				},
+				// 領取成就獎勵
+				receiveAwards: function(val) {
+					this.$store.dispatch('receiveawards',val);
+				},
+				// 點擊學習課程
+				onSubject: function (val, pid) {
+					console.log("pid:"+pid);
+					this.$store.state.currSubject = val;
+					if (val.learning == 0) {
+						console.log(val.name+"-未開始學習");
+						this.$store.dispatch('startsubject',pid);
+					} else if (val.learning == 2) {
+						console.log(val.name+"-已學習完成");	
+					} else {
+						console.log(val.name+"-正在學習");
+						this.isSubject = true;
+					}
+					console.log(this.$store.state.currSubject);
+				},
+				// 關閉題目界面
+				hideSubject: function(val) {
+					this.isSubject = val;
+				},
+	          	// 打開功能菜單彈窗
+		        showPopup: function (val) {
+		            this.skinBox = true;
+		            if (val == 'skin') {
+		            	this.isSkin = true;
+		            } else if (val == 'shop') {
+		            	this.isShop = true;
+		            } else if (val == 'study') {
+		            	this.isStudy = true;
+		            } else {
+		            	this.isBag = true;
+		            }
+		        },
+		        // 關閉功能菜單彈窗
+		        hidePopup: function () {
+					this.skinBox = false;
+					var that = this;
+					setTimeout(function(){ 
+						that.isSkin = false;
+						that.isShop = false;
+						that.isBag = false;
+						that.isStudy = false;
+					}, 400);
+		        },
+		        // 打開用戶信息面板
+		        showUser: function () {
+		        	this.modalUser = true;
+		        },
+		        editUser: function() {
+		        	this.editUserName = !this.editUserName;
+		        },
+		        saveUser: function() {
+		        	if (this.newUserName == '') {
+		        		console.log('請輸入用戶名稱');
+		        		this.error('請輸入用戶名稱');
+		        		return false;
+		        	} else {
+		        		this.success('修改成功');
+			        	this.editUserName = !this.editUserName;
+			        	this.$store.dispatch('setusername', this.newUserName);
+			        	//this.$store.dispatch('savegame');
+		        	}
+		        },
+		        // 設置服裝
+		        replaceDress: function(type,pid) {
+		        	this.$store.dispatch("replacedress",{"type":type,"pid":pid});
+		        },
+		        keepUser: function() {
+		        	this.$store.dispatch('keepuser');
+		        },
+		        // 升級彈窗確認按鈕，確認後再檢測是否可以繼續升級
+		        levelUser: function() {
+		        	var self = this;
+					self.$store.state.modalLevel = false;
+					setTimeout (function() {
+		              self.$store.dispatch('settlelevel', self.$store.state.chick.exp);
+		            },500);
+		        },
+		        shopSettle: function() {
+		        	var num = this.shoppingNum;
+		        	var name = this.$store.state.currFood.name;
+		        	if (num == 0) {
+		        		this.error('請輸入購買數量');
+		        		this.modalShop = false;
+		        		return false;
+		        	} else if ( this.$store.state.user.money < this.$store.state.currFood.price * num) {
+		        		this.error('不夠金幣購買');
+		        		this.modalShop = false;
+		        		return false;
+		        	} else {
+		        		this.success('成功購買了'+num+"個"+name);
+		        		this.hidePopup();
+		        	}
+		        	this.$store.dispatch('shopsettle',num);
+		        	this.hideShop();
+		        	this.shoppingNum = 0;
+		        },
+		        // 公共成功提示
+		        success: function(val) {
+	                this.$Message.success(val);
+	            },
+	            // 公共失敗提示
+	            error: function(val) {
+	                this.$Message.error(val);
+	            },
+	            hideLoading: function() {
+	            	var that = this;
+	            	//定義2秒後隱藏loading
+				  	setInterval(function(){
+				    	that.isLoad = false;
+				  	},2000)
+	            }
+
+	        },
+	        // 過濾器
+	        filters: {
+	          // 格式化顯示時間 毫秒轉：天-小時-分鐘-秒
+	          SecondToDate (value) {
+	            var time = value;
+	            if (null != time && "" != time) {
+	              if (time > 60 * 1000 && time < 60 * 60 * 1000) {
+	                time = parseInt(time / 1000 / 60.0) + "分鐘" + parseInt((parseFloat(time / 1000 / 60.0) -
+	                parseInt(time / 1000 / 60.0)) * 60) + "秒";
+	              } else if (time >= 60 * 60 * 1000 && time < 60 * 60 * 24 * 1000) {
+	                time = parseInt(time / 1000 / 3600.0) + "小時" + parseInt((parseFloat(time / 1000 / 3600.0) -
+	                parseInt(time / 1000 / 3600.0)) * 60) + "分鐘" +
+	                parseInt((parseFloat((parseFloat(time / 1000 / 3600.0) - parseInt(time / 1000 / 3600.0)) * 60) -
+	                parseInt((parseFloat(time / 1000 / 3600.0) - parseInt(time / 1000 / 3600.0)) * 60)) * 60) + "秒";
+	              } else if (time >= 60 * 60 * 24 * 1000) {
+	              time = parseInt(time / 1000 / 3600.0/24) + "天" +parseInt((parseFloat(time / 1000 / 3600.0/24)-
+	                parseInt(time / 1000 / 3600.0/24))*24) + "小時" + parseInt((parseFloat(time / 1000 / 3600.0) -
+	                parseInt(time / 1000 / 3600.0)) * 60) + "分鐘" +
+	                parseInt((parseFloat((parseFloat(time / 1000 / 3600.0) - parseInt(time / 1000/ 3600.0)) * 60) -
+	                parseInt((parseFloat(time / 1000 / 3600.0) - parseInt(time / 1000 / 3600.0)) * 60)) * 60) + "秒";
+	              } else {
+	                time = Math.round((time % (1000 * 60)) / 1000) + "秒";
+	              }
+	            }
+	            return time;
+	          }
+	      }
+	    });
+	</script>
+</body>
+</html>
