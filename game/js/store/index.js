@@ -2,8 +2,8 @@ const store = new Vuex.Store({
     state: {
         user: {
           firstGame: 0, // 
-          name: '养鸡大户006',
-          money: 3000,
+          name: '用戶',
+          money: 10000,
           achievementNum: 0, // 获得成就总数
         },
         // 物品，收获物品
@@ -59,7 +59,7 @@ const store = new Vuex.Store({
           state.enddate = '';
           state.chick.eat = false;
           this.commit('SAVE_GAME');
-          state.content = '大佬，肚饥咧！';
+          state.content = '我餓了！';
         },
         FEED_CLICK (state,endDate) {
             // 得到选中的食物
@@ -116,7 +116,7 @@ const store = new Vuex.Store({
         SHOP_SETTLE (state,num) {
           state.currFood.num = num;
           state.user.money = state.user.money - state.currFood.price * num;
-          console.log("购买了"+num+"个"+state.currFood.name);
+          console.log("購買了"+num+"個"+state.currFood.name);
         },
         // 进食结束
         END_EAT (state) {
@@ -125,9 +125,9 @@ const store = new Vuex.Store({
             // 结束结算
             this.commit('settleExp');
             this.commit('SAVE_GAME');          // 存档
-            state.content = '喂食结束';
+            state.content = '餵食結束';
             setTimeout (function() {
-              state.content = '阴公，好嗨饿！';
+              state.content = '好嗨歐！';
             },2000)
         },
         endEat (state) {
@@ -136,18 +136,18 @@ const store = new Vuex.Store({
             // 结束结算
             this.commit('settleExp');
             this.commit('SAVE_GAME');          // 存档
-            state.content = '喂食结束';
+            state.content = '餵食結束';
             setTimeout (function() {
-              state.content = '阴公，好嗨饿！';
+              state.content = '好嗨歐！';
             },2000)
         },
         // 结束结算
         settleExp (state) {
             state.chick.egg.addEggExps = parseInt(state.currFood.exp/state.chick.egg.eggBase);// 鸡蛋加成 = 食物经验/基数，取整数
             let eggExps = state.chick.egg.progress += state.chick.egg.addEggExps;
-            console.log("鸡蛋进度条增加后："+eggExps);
+            console.log("雞蛋進度條增加後："+eggExps);
             let exps = state.chick.exp + state.currFood.exp;
-            console.log("小鸡经验增加后为："+exps);
+            console.log("經驗增加後為："+exps);
             this.commit('SETTLE_LEVEL', exps);
             this.commit('settleEgg', eggExps);
         },
@@ -157,9 +157,9 @@ const store = new Vuex.Store({
               console.log("eggExps:"+eggExps);
               let eggNum = parseInt(eggExps/100);
               state.chick.egg.num += eggNum;
-              console.log("生成的鸡蛋数："+state.chick.egg.num);
+              console.log("成的雞蛋數："+state.chick.egg.num);
               state.chick.egg.progress = eggExps - eggNum * 100;
-              console.log("剩余的鸡蛋经验值："+state.chick.egg.progress);
+              console.log("剩餘的雞蛋經驗值："+state.chick.egg.progress);
             }
         },
         // 升级计算
@@ -187,7 +187,7 @@ const store = new Vuex.Store({
               if (obj.name === good.name) {
                 state.currGood = obj;
                 state.currGood.num += good.num;
-                console.log("收获物品"+state.currGood.name+"一共"+good.num+"个");
+                console.log("收穫物品"+state.currGood.name+"一共"+good.num+"个");
                 state.chick.egg.num = 0;
               }
             })
@@ -240,7 +240,7 @@ const store = new Vuex.Store({
             if (obj.title === val) {
               state.currAchievement = obj;
               state.user.money += parseInt(obj.profit);
-              popUp('获得金币','+'+parseInt(obj.profit));
+              popUp('獲得金幣','+'+parseInt(obj.profit));
               //obj.complete = false;
               obj.completeID = 1;
             }
