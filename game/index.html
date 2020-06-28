@@ -3301,7 +3301,7 @@ top: 10px;
 						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
 					</div>
 					<div class="popup-content">
-						<p style="padding-top: 50px; text-align: center;">商店</p>
+						<p style="padding-top: 50px; text-align: center;"><i-button type="primary" @click="addmoneyfff">領取$1000</i-button></p>
 					</div>
 				</div>
 				<div class="popup-item" v-show="isBag">
@@ -4184,6 +4184,9 @@ Vue.component('c-subject', {
 		        },
 		        keepUser: function() {
 		        	this.$store.dispatch('keepuser');
+		        },
+			addmoneyfff: function() {
+		        	state.user.money += 1000 ;
 		        },
 		        // 升級彈窗確認按鈕，確認後再檢測是否可以繼續升級
 		        levelUser: function() {
