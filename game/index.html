@@ -3345,35 +3345,7 @@ top: 10px;
 					    </tabs>
 					</div>
 				</div>
-				<div class="popup-item" v-show="isStudy">
-					<div class="popup-head border-bottom-1px">
-						<span class="popup-title fl">學習</span>
-						<i class="ivu-icon ivu-icon-md-close-circle" @click="hidePopup"></i>
-					</div>
-
-					<div class="popup-content">
-						<tabs :animated="false">
-					        <tab-pane v-for="(subject, index1) in subjectList" :label="subject.type" :icon="subject.icon" :key="subject.type">
-					        	<ul class="subject-list">
-									<li v-for="item in subject.list" :key="item.name" :class="{on:item.learning == 1, over:item.learning == 2}" @click="onSubject(item,index1)">
-										<div class="subject-img">
-											<div class="learning-label">
-												<span v-if="item.learning == 0">未學習</span>
-												<span v-if="item.learning == 1">學習中</span>
-												<span v-if="item.learning == 2">已學完</span>
-											</div>
-											<img :src="item.img">
-										</div>
-										<p class="subject-name">{{item.name}}</p>
-									</li>
-								</ul>
-					        </tab-pane>
-					    </tabs>
-						<p style="padding-top: 50px; text-align: center; display: none;">学习功能开发中...</p>
-					</div>
-				</div>
-			</div>		
-		</div>
+				
 		<transition name="fade">
 		    <div class="loading" v-if="isLoad">
 				<div class="pic">
